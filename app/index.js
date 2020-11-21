@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import {combinedRoutes} from "../melirfan/utils/utils.js";
+import category from "./category/controller.js";
 
 const app = express()
 const port = 3000
@@ -14,9 +15,7 @@ app.use(bodyParser.json());
 const routes = combinedRoutes()
 
 routes.map((item)=> {
-    app[item.method.toLowerCase()](item.path, (req, res) => {
-        res.send(item.controller)
-    })
+    app[item.method.toLowerCase()](item.path, category.find)
 })
 
 app.get('/', (req, res) => {
