@@ -1,49 +1,49 @@
-export const routes = {
+{
   "routes": [
     {
       "method": "GET",
-      "path": "/post",
-      "controller": "post.find",
+      "path": "/REPLACE_ME",
+      "controller": "REPLACE_ME.find",
       "config": {
         "middleware": []
       }
     },
     {
       "method": "GET",
-      "path": "/post/count",
-      "controller": "post.count",
+      "path": "/REPLACE_ME/count",
+      "controller": "REPLACE_ME.count",
       "config": {
         "middleware": []
       }
     },
     {
       "method": "GET",
-      "path": "/post/:id",
-      "controller": "post.findOne",
+      "path": "/REPLACE_ME/:id",
+      "controller": "REPLACE_ME.findOne",
       "config": {
         "middleware": []
       }
     },
     {
       "method": "POST",
-      "path": "/post",
-      "controller": "post.create",
+      "path": "/REPLACE_ME",
+      "controller": "REPLACE_ME.create",
       "config": {
         "middleware": []
       }
     },
     {
       "method": "PUT",
-      "path": "/post/:id",
-      "controller": "post.update",
+      "path": "/REPLACE_ME/:id",
+      "controller": "REPLACE_ME.update",
       "config": {
         "middleware": []
       }
     },
     {
       "method": "DELETE",
-      "path": "/post/:id",
-      "controller": "post.delete",
+      "path": "/REPLACE_ME/:id",
+      "controller": "REPLACE_ME.delete",
       "config": {
         "middleware": []
       }

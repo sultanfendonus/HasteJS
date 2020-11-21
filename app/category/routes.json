@@ -1,49 +1,49 @@
-export const routes = {
+{
   "routes": [
     {
       "method": "GET",
-      "path": "/REPLACE_ME",
-      "controller": "REPLACE_ME.find",
+      "path": "/category",
+      "controller": "category.find",
       "config": {
         "middleware": []
       }
     },
     {
       "method": "GET",
-      "path": "/REPLACE_ME/count",
-      "controller": "REPLACE_ME.count",
+      "path": "/category/count",
+      "controller": "category.count",
       "config": {
         "middleware": []
       }
     },
     {
       "method": "GET",
-      "path": "/REPLACE_ME/:id",
-      "controller": "REPLACE_ME.findOne",
+      "path": "/category/:id",
+      "controller": "category.findOne",
       "config": {
         "middleware": []
       }
     },
     {
       "method": "POST",
-      "path": "/REPLACE_ME",
-      "controller": "REPLACE_ME.create",
+      "path": "/category",
+      "controller": "category.create",
       "config": {
         "middleware": []
       }
     },
     {
       "method": "PUT",
-      "path": "/REPLACE_ME/:id",
-      "controller": "REPLACE_ME.update",
+      "path": "/category/:id",
+      "controller": "category.update",
       "config": {
         "middleware": []
       }
     },
     {
       "method": "DELETE",
-      "path": "/REPLACE_ME/:id",
-      "controller": "REPLACE_ME.delete",
+      "path": "/category/:id",
+      "controller": "category.delete",
       "config": {
         "middleware": []
       }

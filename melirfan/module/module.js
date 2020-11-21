@@ -9,9 +9,9 @@ if(!fs.existsSync(dir)){
     fs.mkdirSync(dir);
 }
 
-//copy routes.js file
-let sourceDir = `./${frameworkName}/module/routes.js`;
-let destinationDir = `./app/${process.argv[2]}/routes.js`;
+//copy routes.json file
+let sourceDir = `./${frameworkName}/module/routes.json`;
+let destinationDir = `./app/${process.argv[2]}/routes.json`;
 copyFile(sourceDir, destinationDir)
 
 //replace with module name

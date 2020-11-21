@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
-import {routes} from "./post/routes.js";
+import {combinedRoutes} from "../melirfan/utils/utils.js";
 
 const app = express()
 const port = 3000
@@ -11,8 +11,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // console.log(routes);
+const routes = combinedRoutes()
 
-routes.routes.map((item)=> {
+routes.map((item)=> {
     app[item.method.toLowerCase()](item.path, (req, res) => {
         res.send(item.controller)
     })
