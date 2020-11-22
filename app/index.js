@@ -2,7 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import {combinedRoutes} from "../melirfan/utils/utils.js";
-import category from "./category/controller.js";
+import {CONTROLLER_MAPPER} from "../melirfan/module/controller/mapper.js";
 
 const app = express()
 const port = 3000
@@ -15,7 +15,7 @@ app.use(bodyParser.json());
 const routes = combinedRoutes()
 
 routes.map((item)=> {
-    app[item.method.toLowerCase()](item.path, category.find)
+    app[item.method.toLowerCase()](item.path, CONTROLLER_MAPPER['category']['findOne'])
 })
 
 app.get('/', (req, res) => {
