@@ -1,3 +1,4 @@
+// import models from '../../models/index.js';
 const controller = {
     find(req, res, next){
         try {
@@ -20,9 +21,15 @@ const controller = {
             next(err);
         }
     },
-    create(req, res, next){
+    async create(req, res, next){
         try {
-            res.send({controller: 'category', query: req.query, params: req.params, body: req.body});
+            // const response = await models.myuser.create({
+            //     first_name: 'sultan',
+            //     last_name: 'mahamud',
+            //     bio: 'great teacher'
+            // });
+
+            res.status(201).json('response');
         } catch (err) {
             next(err);
         }

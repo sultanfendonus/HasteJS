@@ -7,8 +7,7 @@ export const copyFile = (sourceDir, desDir)=> {
 }
 
 export const readContent = (file) => {
-    var buffer = fs.readFileSync(file);
-    return buffer;
+    return fs.readFileSync(file);
 }
 
 export const combinedRoutes = ()=> {
