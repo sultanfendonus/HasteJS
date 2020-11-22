@@ -15,7 +15,8 @@ app.use(bodyParser.json());
 const routes = combinedRoutes()
 
 routes.map((item)=> {
-    app[item.method.toLowerCase()](item.path, CONTROLLER_MAPPER['category']['findOne'])
+    let [controller, method] = item.controller.split('.');
+    app[item.method.toLowerCase()](item.path, CONTROLLER_MAPPER[controller][method])
 })
 
 app.get('/', (req, res) => {
