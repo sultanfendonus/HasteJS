@@ -2,6 +2,7 @@ import fs from 'fs';
 import shell from 'shelljs'
 import {frameworkName} from "../constant/general.js";
 import {copyFile} from "../utils/utils.js";
+import {capitalizeFirstLetter} from "../utils/utils.js";
 
 //CREATE A NEW DIRECTORY DEFINE FROM ARGS.
 let dir = `./app/${process.argv[2]}`;
@@ -24,6 +25,7 @@ copyFile(controllerSourceDir, controllerDestinationDir);
 
 //replace with module name
 shell.sed('-i', 'REPLACE_ME', process.argv[2], controllerDestinationDir);
+shell.sed('-i', 'UPPER', capitalizeFirstLetter(process.argv[2]), controllerDestinationDir);
 
 //ADD IMPORT IN CONTROLLER MAPPER
 const importText = `import ${process.argv[2]} from "../../../app/${process.argv[2]}/controller.js";
@@ -34,4 +36,12 @@ const keyValue = `${process.argv[2]}: ${process.argv[2]},
 const mapperPath = `./${frameworkName}/module/controller/mapper.js`
 shell.sed('-i', '//IMPORT', importText, mapperPath);
 shell.sed('-i', '//CONTROLLERS', keyValue, mapperPath);
+
+//copy model.js file
+const modelSourceDir = `./${frameworkName}/module/database/model.js`;
+const modelDestinationDir = `./app/${process.argv[2]}/model.js`;
+copyFile(modelSourceDir, modelDestinationDir);
+
+//replace model.js with module name
+shell.sed('-i', 'REPLACE_ME', capitalizeFirstLetter(process.argv[2]), modelDestinationDir);
 

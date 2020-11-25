@@ -1,8 +1,7 @@
-import {Category} from '../../database/models/category.js'
+import {Model as Category} from './model.js'
 const controller = {
     async find(req, res, next){
         try {
-            await Category.sync()
             const response = await Category.findAll({});
             res.send(response);
         } catch (err) {
@@ -25,13 +24,8 @@ const controller = {
     },
     async create(req, res, next){
         try {
-
             await Category.sync()
-            const response = await Category.create({
-                title: req.body.title,
-                description: req.body.description
-            });
-
+            const response = await Category.create(req.body);
             res.status(201).json(response);
         } catch (err) {
             next(err);

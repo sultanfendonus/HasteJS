@@ -1,7 +1,9 @@
+import {Model as UPPER} from './model.js'
 const controller = {
-    find(req, res, next){
+    async find(req, res, next){
         try {
-            res.send({controller: 'REPLACE_ME', query: req.query, params: req.params});
+            const response = await UPPER.findAll({});
+            res.send(response);
         } catch (err) {
             next(err);
         }
@@ -20,9 +22,11 @@ const controller = {
             next(err);
         }
     },
-    create(req, res, next){
+    async create(req, res, next){
         try {
-            res.send({controller: 'REPLACE_ME', query: req.query, params: req.params, body: req.body});
+            await UPPER.sync()
+            const response = await UPPER.create(req.body);
+            res.status(201).json(response);
         } catch (err) {
             next(err);
         }

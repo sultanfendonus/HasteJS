@@ -1,5 +1,9 @@
-import Sequelize from 'sequelize';
-export const sequelize = new Sequelize('sqlite::memory:')
+import {Sequelize} from 'sequelize';
+
+export const sequelize = new Sequelize({
+    dialect: 'sqlite',
+    storage: 'db/database.sqlite'
+});
 
 export const init = async ()=> {
     try {
