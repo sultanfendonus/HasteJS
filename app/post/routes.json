@@ -2,48 +2,48 @@
   "routes": [
     {
       "method": "GET",
-      "path": "/category",
-      "controller": "category.find",
+      "path": "/post",
+      "controller": "post.find",
       "config": {
         "middleware": []
       }
     },
     {
       "method": "GET",
-      "path": "/category/count",
-      "controller": "category.count",
+      "path": "/post/count",
+      "controller": "post.count",
       "config": {
         "middleware": []
       }
     },
     {
       "method": "GET",
-      "path": "/category/:id",
-      "controller": "category.findOne",
+      "path": "/post/:id",
+      "controller": "post.findOne",
       "config": {
         "middleware": []
       }
     },
     {
       "method": "POST",
-      "path": "/category",
-      "controller": "category.create",
+      "path": "/post",
+      "controller": "post.create",
       "config": {
         "middleware": []
       }
     },
     {
       "method": "PUT",
-      "path": "/category/:id",
-      "controller": "category.update",
+      "path": "/post/:id",
+      "controller": "post.update",
       "config": {
         "middleware": []
       }
     },
     {
       "method": "DELETE",
-      "path": "/category/:id",
-      "controller": "category.delete",
+      "path": "/post/:id",
+      "controller": "post.delete",
       "config": {
         "middleware": []
       }

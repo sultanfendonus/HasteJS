@@ -24,3 +24,22 @@ export const combinedRoutes = ()=> {
 export const capitalizeFirstLetter = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
+
+export const isDuplicate = (file, string) => {
+    const data = fs.readFileSync(file);
+    return data.includes(string);
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,7 +1,7 @@
 import fs from 'fs';
 import shell from 'shelljs'
 import {frameworkName} from "../constant/general.js";
-import {copyFile} from "../utils/utils.js";
+import {copyFile, isDuplicate} from "../utils/utils.js";
 import {capitalizeFirstLetter} from "../utils/utils.js";
 
 //CREATE A NEW DIRECTORY DEFINE FROM ARGS.
@@ -34,8 +34,13 @@ const keyValue = `${process.argv[2]}: ${process.argv[2]},
     //CONTROLLERS`
 
 const mapperPath = `./${frameworkName}/module/controller/mapper.js`
-shell.sed('-i', '//IMPORT', importText, mapperPath);
-shell.sed('-i', '//CONTROLLERS', keyValue, mapperPath);
+if(!isDuplicate(mapperPath,importText)){
+    shell.sed('-i', '//IMPORT', importText, mapperPath);
+}
+if(!isDuplicate(mapperPath, keyValue)){
+    shell.sed('-i', '//CONTROLLERS', keyValue, mapperPath);
+}
+
 
 //copy model.js file
 const modelSourceDir = `./${frameworkName}/module/database/model.js`;
