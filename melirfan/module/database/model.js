@@ -1,4 +1,5 @@
 import {sequelize} from "../../database/index.js";
+import DataTypes from 'sequelize';
 
 export const Model = sequelize.define('REPLACE_ME', {
     // Model attributes are defined here
@@ -6,11 +7,11 @@ export const Model = sequelize.define('REPLACE_ME', {
     // visit https://sequelize.org/master/manual/model-basics.html for details.
 
     title: {
-        type: String,
+        type: DataTypes.STRING,
         allowNull: false
     },
     description: {
-        type: String
+        type: DataTypes.STRING
         // allowNull defaults to true
     }
 }, {
