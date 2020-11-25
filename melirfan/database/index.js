@@ -7,7 +7,7 @@ const initSequelize = ()=> {
     // console.log("db init")
     const sequelizesrcSourcePath = `./${frameworkName}/database/.sequelizerc`;
     const sequelizesrcDestinationPath = './.sequelizerc';
-    copyFile(sequelizesrcSourcePath,sequelizesrcDestinationPath)
+    // copyFile(sequelizesrcSourcePath,sequelizesrcDestinationPath)
 }
 
 initSequelize();

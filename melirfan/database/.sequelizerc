@@ -1,9 +1,8 @@
-require("@babel\register");
 const path = require('path');
 
 module.exports = {
-  'config': path.resolve('config', 'config.json'),
-  'models-path': path.resolve('models'),
-  'seeders-path': path.resolve('seeders'),
-  'migrations-path': path.resolve('migrations')
-}
+  'config': path.resolve('migrations/config/babelHook.js'),
+  'migrations-path': path.resolve('migrations'),
+  'seeders-path': path.resolve('migrations/seeders'),
+  'models-path': path.resolve('migrations/models')
+};

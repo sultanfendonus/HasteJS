@@ -1,8 +1,10 @@
-// import models from '../../models/index.js';
+import {Category} from '../../database/models/category.js'
 const controller = {
-    find(req, res, next){
+    async find(req, res, next){
         try {
-            res.send({controller: 'category', query: req.query, params: req.params});
+            await Category.sync()
+            const response = await Category.findAll({});
+            res.send(response);
         } catch (err) {
             next(err);
         }
@@ -23,13 +25,14 @@ const controller = {
     },
     async create(req, res, next){
         try {
-            // const response = await models.myuser.create({
-            //     first_name: 'sultan',
-            //     last_name: 'mahamud',
-            //     bio: 'great teacher'
-            // });
 
-            res.status(201).json('response');
+            await Category.sync()
+            const response = await Category.create({
+                title: req.body.title,
+                description: req.body.description
+            });
+
+            res.status(201).json(response);
         } catch (err) {
             next(err);
         }
