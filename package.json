@@ -6,7 +6,9 @@
   "type": "module",
   "scripts": {
     "develop": "nodemon app/index.js",
+    "sequelize": "sequelize",
     "create-module": "node melirfan/module/module.js",
+    "db:sync": "node database/sync.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "sunny sultan",
@@ -16,6 +18,12 @@
     "cors": "2.8.5",
     "express": "^4.17.1",
     "nodemon": "^2.0.6",
-    "shelljs": "^0.8.4"
+    "sequelize": "^6.3.5",
+    "shelljs": "^0.8.4",
+    "sqlite3": "^5.0.0"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.2",
+    "sequelize-cli": "^6.2.0"
   }
 }

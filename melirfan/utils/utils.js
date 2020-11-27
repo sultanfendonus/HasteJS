@@ -7,8 +7,7 @@ export const copyFile = (sourceDir, desDir)=> {
 }
 
 export const readContent = (file) => {
-    var buffer = fs.readFileSync(file);
-    return buffer;
+    return fs.readFileSync(file);
 }
 
 export const combinedRoutes = ()=> {
@@ -21,3 +20,26 @@ export const combinedRoutes = ()=> {
     shell.cd('..');
     return result;
 }
+
+export const capitalizeFirstLetter = (string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+export const isDuplicate = (file, string) => {
+    const data = fs.readFileSync(file);
+    return data.includes(string);
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

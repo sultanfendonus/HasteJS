@@ -1,9 +1,9 @@
-import {Model as Category} from './model.js'
+import {Model as List} from './model.js'
 
 const controller = {
     async find(req, res, next){
         try {
-            const response = await Category.findAll({});
+            const response = await List.findAll({});
             res.send(response);
         } catch (err) {
             next(err);
@@ -11,7 +11,7 @@ const controller = {
     },
     async count(req, res, next){
         try {
-            const response = await Category.count({});
+            const response = await List.count({});
             res.json({total: response});
         } catch (err) {
             next(err);
@@ -19,24 +19,19 @@ const controller = {
     },
     async findOne(req, res, next){
         try {
-            const response = await Category.findOne({
+            const response = await List.findOne({
                 where: {
                     id: req.params.id
                 }
             });
-            if(response){
-                res.send(response);
-            }else {
-                res.status(404).json({message: 'No item found!'})
-            }
-
+            res.send(response);
         } catch (err) {
             next(err);
         }
     },
     async create(req, res, next){
         try {
-            const response = await Category.create(req.body);
+            const response = await List.create(req.body);
             res.status(201).json(response);
         } catch (err) {
             next(err);
@@ -44,7 +39,7 @@ const controller = {
     },
     async update(req, res, next){
         try {
-            const response = await Category.update(req.body, {
+            const response = await List.update(req.body, {
                 where: req.params
             });
             if(response[0] === 1){
@@ -59,7 +54,7 @@ const controller = {
     },
     async delete(req, res, next){
         try {
-            const response = await Category.destroy({
+            const response = await List.destroy({
                 where: req.params
             })
             if(response === 1){
