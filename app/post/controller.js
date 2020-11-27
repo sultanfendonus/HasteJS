@@ -24,7 +24,7 @@ const controller = {
     },
     async create(req, res, next){
         try {
-            await Post.sync()
+            await Post.sync({ alter: true })
             const response = await Post.create(req.body);
             res.status(201).json(response);
         } catch (err) {

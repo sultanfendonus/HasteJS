@@ -8,7 +8,7 @@
     "develop": "nodemon app/index.js",
     "sequelize": "sequelize",
     "create-module": "node melirfan/module/module.js",
-    "db-init": "node melirfan/module/database/index.js",
+    "db:sync": "node database/sync.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "sunny sultan",

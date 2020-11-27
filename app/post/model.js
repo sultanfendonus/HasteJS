@@ -13,6 +13,9 @@ export const Model = sequelize.define('Post', {
     description: {
         type: DataTypes.STRING
         // allowNull defaults to true
+    },
+    isNotSafe: {
+        type: DataTypes.BOOLEAN
     }
 }, {
     // Other model options go here

@@ -24,7 +24,6 @@ const controller = {
     },
     async create(req, res, next){
         try {
-            await UPPER.sync()
             const response = await UPPER.create(req.body);
             res.status(201).json(response);
         } catch (err) {
