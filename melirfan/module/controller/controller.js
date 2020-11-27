@@ -24,7 +24,11 @@ const controller = {
                     id: req.params.id
                 }
             });
-            res.send(response);
+            if(response){
+                res.send(response);
+            }else {
+                res.status(404).json({message: 'No item found!'})
+            }
         } catch (err) {
             next(err);
         }
