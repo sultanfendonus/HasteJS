@@ -5,7 +5,7 @@
       "path": "/list",
       "controller": "list.find",
       "config": {
-        "middleware": []
+        "middleware": ["isAuthenticate2"]
       }
     },
     {
@@ -13,7 +13,7 @@
       "path": "/list/count",
       "controller": "list.count",
       "config": {
-        "middleware": []
+        "middleware": ["isAuthenticate", "isAuthenticate2"]
       }
     },
     {
@@ -21,7 +21,7 @@
       "path": "/list/:id",
       "controller": "list.findOne",
       "config": {
-        "middleware": []
+        "middleware": ["isAuthenticate"]
       }
     },
     {
@@ -29,7 +29,7 @@
       "path": "/list",
       "controller": "list.create",
       "config": {
-        "middleware": []
+        "middleware": ["isAuthenticate"]
       }
     },
     {
@@ -37,7 +37,7 @@
       "path": "/list/:id",
       "controller": "list.update",
       "config": {
-        "middleware": []
+        "middleware": ["isAuthenticate"]
       }
     },
     {
@@ -45,7 +45,7 @@
       "path": "/list/:id",
       "controller": "list.delete",
       "config": {
-        "middleware": []
+        "middleware": ["isAuthenticate"]
       }
     }
   ]
