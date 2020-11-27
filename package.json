@@ -16,8 +16,11 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "1.19.0",
+    "chalk": "^4.1.0",
+    "clear": "^0.1.0",
     "cors": "2.8.5",
     "express": "^4.17.1",
+    "figlet": "^1.5.0",
     "nodemon": "^2.0.6",
     "sequelize": "^6.3.5",
     "shelljs": "^0.8.4",
