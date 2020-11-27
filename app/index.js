@@ -27,6 +27,14 @@ app.get('/', (req, res) => {
     res.send(routes)
 })
 
+app.use((err, req, res, next) => {
+    if (!err.statusCode) {
+        err.statusCode = 500;
+    }
+    res.status(err.statusCode).send({ code: err.statusCode, error: err.message });
+});
+
+
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`)
 })
