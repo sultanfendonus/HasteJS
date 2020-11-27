@@ -4,7 +4,7 @@ import bodyParser from 'body-parser';
 import {combinedRoutes} from "../melirfan/utils/utils.js";
 import {CONTROLLER_MAPPER} from "../melirfan/module/controller/mapper.js";
 import {init} from '../database/index.js'
-import {MIDDLEWARE_MAPPER} from "./middlewareMapper.js";
+import {MIDDLEWARE_MAPPER} from "../middleware/middlewareMapper.js";
 
 
 const app = express()

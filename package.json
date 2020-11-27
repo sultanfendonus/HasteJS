@@ -7,8 +7,9 @@
   "scripts": {
     "develop": "nodemon app/index.js",
     "sequelize": "sequelize",
-    "create-module": "node melirfan/module/module.js",
+    "create:module": "node melirfan/module/module.js",
     "db:sync": "node database/sync.js",
+    "create:middleware": "node melirfan/middleware/script.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "sunny sultan",
