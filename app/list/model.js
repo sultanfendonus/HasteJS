@@ -1,7 +1,7 @@
 import {sequelize} from "../../database/index.js";
 import DataTypes from 'sequelize';
 
-export const Model = sequelize.define('Post', {
+export const Model = sequelize.define('List', {
     // Model attributes are defined here
     // This are example attributes. please change as you want.
     // visit https://sequelize.org/master/manual/model-basics.html for details.
@@ -13,9 +13,6 @@ export const Model = sequelize.define('Post', {
     description: {
         type: DataTypes.STRING
         // allowNull defaults to true
-    },
-    isNotSafe: {
-        type: DataTypes.BOOLEAN
     }
 }, {
     // Other model options go here
