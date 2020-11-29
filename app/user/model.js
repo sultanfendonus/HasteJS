@@ -32,6 +32,11 @@ export const Model = sequelize.define('User', {
 }, {
     // Other model options go here
     defaultScope: {
-        attributes: { exclude: ['password'] },
+        attributes: { exclude: [''] },
+    },
+    scopes: {
+        withoutPassword: {
+            attributes: {exclude: ['password']},
+        }
     }
 });

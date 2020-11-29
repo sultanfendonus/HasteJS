@@ -33,6 +33,14 @@
       }
     },
     {
+      "method": "POST",
+      "path": "/user/login",
+      "controller": "user.login",
+      "config": {
+        "middleware": []
+      }
+    },
+    {
       "method": "PUT",
       "path": "/user/:id",
       "controller": "user.update",

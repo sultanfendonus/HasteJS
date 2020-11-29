@@ -1,6 +1,7 @@
 import {Model as User} from './model.js';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
+import {jwtSecretKey} from "../../config.js";
 
 const controller = {
     async find(req, res, next){
@@ -37,8 +38,6 @@ const controller = {
     },
     async create(req, res, next){
         try {
-            // const response = await User.create(req.body);
-            // res.status(201).json(response);
             bcrypt.genSalt(10, function (err, salt) {
                 bcrypt.hash(req.body.password, salt, async function (err, hash) {
                     //data insert
@@ -59,7 +58,7 @@ const controller = {
                             email: response.email,
                             user_id: response.id
                         },
-                        'secretssh'
+                        jwtSecretKey
                     );
 
                     res.status(201).json({
@@ -72,6 +71,45 @@ const controller = {
             });
         } catch (err) {
             next(err);
+        }
+    },
+    async login(req, res, next){
+        try{
+            const user = await User.findOne({
+                where: { email: req.body.email }
+            });
+
+            if (user) {
+                bcrypt.compare(req.body.password, user.password, async function (err, result) {
+                    // res === true
+                    if (result === true) {
+                        const token = jwt.sign(
+                            {
+                                email: user.email,
+                                user_id: user.id
+                            },
+                            jwtSecretKey
+                        );
+
+                        const userData = await User.scope('withoutPassword').findOne({
+                            where: { email: req.body.email }
+                        });
+
+                        res.status(200).json({
+                            user: userData,
+                            token: token
+                        });
+                    } else {
+                        res
+                            .status(401)
+                            .json({ errors: [{ msg: 'Invalid email or password!' }] });
+                    }
+                });
+            } else {
+                res.status(401).json({ errors: [{ msg: 'Invalid email or password!' }] });
+            }
+        }catch (err){
+            next(err)
         }
     },
     async update(req, res, next){
