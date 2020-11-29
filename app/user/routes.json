@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/user",
+      "controller": "user.find",
+      "config": {
+        "middleware": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/user/count",
+      "controller": "user.count",
+      "config": {
+        "middleware": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/user/:id",
+      "controller": "user.findOne",
+      "config": {
+        "middleware": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/user/register",
+      "controller": "user.create",
+      "config": {
+        "middleware": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/user/:id",
+      "controller": "user.update",
+      "config": {
+        "middleware": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/user/:id",
+      "controller": "user.delete",
+      "config": {
+        "middleware": []
+      }
+    }
+  ]
+}
