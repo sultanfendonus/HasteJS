@@ -4,6 +4,8 @@ import bodyParser from 'body-parser';
 import {combinedRoutes} from "../melirfan/utils/utils.js";
 import {CONTROLLER_MAPPER} from "../melirfan/module/controller/mapper.js";
 import {init} from '../database/index.js'
+import {MIDDLEWARE_MAPPER} from "../middleware/middlewareMapper.js";
+
 
 const app = express()
 const port = 3000
@@ -18,9 +20,19 @@ init()
 // console.log(routes);
 const routes = combinedRoutes()
 
+const appendMiddlewares = (middlewares)=> {
+    let middlewareArray = []
+    middlewares.forEach((item)=> {
+        middlewareArray.push(MIDDLEWARE_MAPPER[item])
+    })
+    return middlewareArray;
+}
+
 routes.map((item)=> {
     const [controller, method] = item.controller.split('.');
-    app[item.method.toLowerCase()](item.path, CONTROLLER_MAPPER[controller][method])
+    const middlewares = item.config['middleware']
+    app[item.method.toLowerCase()](item.path, middlewares.length > 0 ? appendMiddlewares(middlewares): [],
+        CONTROLLER_MAPPER[controller][method])
 })
 
 app.get('/', (req, res) => {

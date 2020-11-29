@@ -1,9 +1,9 @@
-import {Model as Category} from './model.js'
+import {Model as Post} from './model.js'
 
 const controller = {
     async find(req, res, next){
         try {
-            const response = await Category.findAll({});
+            const response = await Post.findAll({});
             res.send(response);
         } catch (err) {
             next(err);
@@ -11,7 +11,7 @@ const controller = {
     },
     async count(req, res, next){
         try {
-            const response = await Category.count({});
+            const response = await Post.count({});
             res.json({total: response});
         } catch (err) {
             next(err);
@@ -19,7 +19,7 @@ const controller = {
     },
     async findOne(req, res, next){
         try {
-            const response = await Category.findOne({
+            const response = await Post.findOne({
                 where: {
                     id: req.params.id
                 }
@@ -35,7 +35,7 @@ const controller = {
     },
     async create(req, res, next){
         try {
-            const response = await Category.create(req.body);
+            const response = await Post.create(req.body);
             res.status(201).json(response);
         } catch (err) {
             next(err);
@@ -43,7 +43,7 @@ const controller = {
     },
     async update(req, res, next){
         try {
-            const response = await Category.update(req.body, {
+            const response = await Post.update(req.body, {
                 where: req.params
             });
             if(response[0] === 1){
@@ -58,7 +58,7 @@ const controller = {
     },
     async delete(req, res, next){
         try {
-            const response = await Category.destroy({
+            const response = await Post.destroy({
                 where: req.params
             })
             if(response === 1){

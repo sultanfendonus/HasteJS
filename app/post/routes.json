@@ -2,48 +2,48 @@
   "routes": [
     {
       "method": "GET",
-      "path": "/list",
-      "controller": "list.find",
-      "config": {
-        "middleware": ["isLoggedIn"]
-      }
-    },
-    {
-      "method": "GET",
-      "path": "/list/count",
-      "controller": "list.count",
+      "path": "/post",
+      "controller": "post.find",
       "config": {
         "middleware": []
       }
     },
     {
       "method": "GET",
-      "path": "/list/:id",
-      "controller": "list.findOne",
+      "path": "/post/count",
+      "controller": "post.count",
+      "config": {
+        "middleware": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/post/:id",
+      "controller": "post.findOne",
       "config": {
         "middleware": []
       }
     },
     {
       "method": "POST",
-      "path": "/list",
-      "controller": "list.create",
+      "path": "/post",
+      "controller": "post.create",
       "config": {
         "middleware": []
       }
     },
     {
       "method": "PUT",
-      "path": "/list/:id",
-      "controller": "list.update",
+      "path": "/post/:id",
+      "controller": "post.update",
       "config": {
         "middleware": []
       }
     },
     {
       "method": "DELETE",
-      "path": "/list/:id",
-      "controller": "list.delete",
+      "path": "/post/:id",
+      "controller": "post.delete",
       "config": {
         "middleware": []
       }

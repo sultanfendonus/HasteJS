@@ -1,8 +1,19 @@
 import fs from 'fs';
 import shell from 'shelljs'
+import clear from 'clear'
+import chalk from "chalk"
+import figlet from 'figlet'
 import {frameworkName} from "../constant/general.js";
 import {copyFile, isDuplicate} from "../utils/utils.js";
 import {capitalizeFirstLetter} from "../utils/utils.js";
+
+//Little style
+clear();
+console.log(
+    chalk.yellow(
+        figlet.textSync(frameworkName, { horizontalLayout: 'full' })
+    )
+);
 
 //CREATE A NEW DIRECTORY DEFINE FROM ARGS.
 let dir = `./app/${process.argv[2]}`;
