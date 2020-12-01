@@ -6,7 +6,7 @@ import {jwtSecretKey} from "../../config.js";
 const controller = {
     async find(req, res, next){
         try {
-            const response = await User.findAll({});
+            const response = await User.scope("withoutPassword").findAll({});
             res.send(response);
         } catch (err) {
             next(err);
@@ -22,7 +22,7 @@ const controller = {
     },
     async findOne(req, res, next){
         try {
-            const response = await User.findOne({
+            const response = await User.scope("withoutPassword").findOne({
                 where: {
                     id: req.params.id
                 }
