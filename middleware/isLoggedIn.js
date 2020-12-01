@@ -1,8 +1,29 @@
-const isLoggedIn = (req,res,next) => {
-    // Your middleware code write here...
-    console.log("I am going through the isLoggedIn middleware....")
+import jwt from 'jsonwebtoken';
+import {jwtSecretKey} from "../config.js";
 
-    next()
+const isLoggedIn = (req,res,next) => {
+    if(!req.get('Authorization')){
+        const error = new Error("Unauthorized User!");
+        error.statusCode = 401;
+        throw error;
+    }
+    let token = req.get('Authorization').split(" ")[1];
+    let decodedToken;
+    try{
+        decodedToken = jwt.verify(token, jwtSecretKey);
+        if(!decodedToken){
+            const error = new Error("Unauthorized User!")
+            error.statusCode = 403;
+            throw error;
+        }
+        req.user_id = decodedToken.user_id
+        req.user_email = decodedToken.email
+        next()
+    }catch (e) {
+        const error = new Error("Unauthorized User!")
+        error.statusCode = 403;
+        next(error)
+    }
 }
 
 export default isLoggedIn;

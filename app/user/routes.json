@@ -13,7 +13,7 @@
       "path": "/user/count",
       "controller": "user.count",
       "config": {
-        "middleware": []
+        "middleware": ["isLoggedIn"]
       }
     },
     {
@@ -22,6 +22,14 @@
       "controller": "user.findOne",
       "config": {
         "middleware": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/user/get/me",
+      "controller": "user.findMe",
+      "config": {
+        "middleware": ["isLoggedIn"]
       }
     },
     {

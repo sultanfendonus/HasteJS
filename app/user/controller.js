@@ -36,6 +36,23 @@ const controller = {
             next(err);
         }
     },
+    async findMe(req, res, next){
+        try {
+            console.log(req.user_id, req.user_email)
+            const response = await User.scope("withoutPassword").findOne({
+                where: {
+                    id: req.user_id
+                }
+            });
+            if(response){
+                res.send(response);
+            }else {
+                res.status(404).json({message: 'No item found!'})
+            }
+        } catch (err) {
+            next(err);
+        }
+    },
     async create(req, res, next){
         try {
             bcrypt.genSalt(10, function (err, salt) {
