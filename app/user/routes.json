@@ -47,22 +47,6 @@
       "config": {
         "middleware": []
       }
-    },
-    {
-      "method": "PUT",
-      "path": "/user/:id",
-      "controller": "user.update",
-      "config": {
-        "middleware": []
-      }
-    },
-    {
-      "method": "DELETE",
-      "path": "/user/:id",
-      "controller": "user.delete",
-      "config": {
-        "middleware": []
-      }
     }
   ]
 }

@@ -128,36 +128,6 @@ const controller = {
         }catch (err){
             next(err)
         }
-    },
-    async update(req, res, next){
-        try {
-            const response = await User.update(req.body, {
-                where: req.params
-            });
-            if(response[0] === 1){
-                res.status(200).json({status: 'success', message: 'Item Updated!'});
-            }else {
-                res.status(400).json({message: 'Something went wrong when update the data!'})
-            }
-
-        } catch (err) {
-            next(err);
-        }
-    },
-    async delete(req, res, next){
-        try {
-            const response = await User.destroy({
-                where: req.params
-            })
-            if(response === 1){
-                res.status(200).json({status: 'success', message: 'Item Deleted Successfully!'})
-            }else {
-                res.status(404).json({message: 'Item not found!'})
-            }
-
-        } catch (err) {
-            next(err);
-        }
     }
 }
 export default controller;
