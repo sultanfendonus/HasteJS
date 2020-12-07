@@ -3,8 +3,24 @@ import {Model as Category} from './model.js'
 const controller = {
     async find(req, res, next){
         try {
-            const response = await Category.findAll({});
-            res.send(response);
+            let { limit, page } = req.query;
+            if (!page || page < 0) {
+                page = 0;
+            }else {
+                page = page - 1;
+            }
+            if (!limit || limit < 0) {
+                limit = 100;
+            }
+            const response = await Category.findAll({
+                limit: limit,
+                offset: page * limit
+            });
+
+            const total = await Category.count();
+            let totalPages = total / limit;
+            totalPages = Math.floor(totalPages);
+            res.status(200).json({ totalItems: total, totalPages: totalPages, contents: response });
         } catch (err) {
             next(err);
         }
