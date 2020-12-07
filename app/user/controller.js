@@ -38,7 +38,6 @@ const controller = {
     },
     async findMe(req, res, next){
         try {
-            console.log(req.user_id, req.user_email)
             const response = await User.scope("withoutPassword").findOne({
                 where: {
                     id: req.user_id

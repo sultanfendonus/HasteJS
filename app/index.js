@@ -1,8 +1,8 @@
 import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
-import {combinedRoutes} from "../melirfan/utils/utils.js";
-import {CONTROLLER_MAPPER} from "../melirfan/module/controller/mapper.js";
+import {combinedRoutes} from "../haste/utils/utils.js";
+import {CONTROLLER_MAPPER} from "../haste/module/controller/mapper.js";
 import {init} from '../database/index.js'
 import {MIDDLEWARE_MAPPER} from "../middleware/middlewareMapper.js";
 
