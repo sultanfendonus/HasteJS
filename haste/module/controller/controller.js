@@ -3,8 +3,24 @@ import {Model as UPPER} from './model.js'
 const controller = {
     async find(req, res, next){
         try {
-            const response = await UPPER.findAll({});
-            res.send(response);
+            let { limit, page } = req.query;
+            if (!page || page < 0) {
+                page = 0;
+            }else {
+                page = page - 1;
+            }
+            if (!limit || limit < 0) {
+                limit = 10;
+            }
+            const response = await UPPER.findAll({
+                limit: limit,
+                offset: page * limit
+            });
+
+            const total = await UPPER.count();
+            let totalPages = total / limit;
+            totalPages = Math.ceil(totalPages);
+            res.status(200).json({ totalItems: total, totalPages: totalPages, contents: response });
         } catch (err) {
             next(err);
         }
