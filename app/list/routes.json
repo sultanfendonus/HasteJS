@@ -13,7 +13,7 @@
       "path": "/list/count",
       "controller": "list.count",
       "config": {
-        "middleware": []
+        "middleware": ["isLoggedIn"]
       }
     },
     {
@@ -21,7 +21,7 @@
       "path": "/list/:id",
       "controller": "list.findOne",
       "config": {
-        "middleware": []
+        "middleware": ["isLoggedIn"]
       }
     },
     {

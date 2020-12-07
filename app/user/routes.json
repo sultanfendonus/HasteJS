@@ -5,7 +5,7 @@
       "path": "/user",
       "controller": "user.find",
       "config": {
-        "middleware": []
+        "middleware": ["isLoggedIn"]
       }
     },
     {
@@ -21,7 +21,7 @@
       "path": "/user/:id",
       "controller": "user.findOne",
       "config": {
-        "middleware": []
+        "middleware": ["isLoggedIn"]
       }
     },
     {
