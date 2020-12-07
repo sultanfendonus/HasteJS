@@ -8,7 +8,7 @@ import {MIDDLEWARE_MAPPER} from "../middleware/middlewareMapper.js";
 
 
 const app = express()
-const port = 3000
+const port = 4895
 
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));

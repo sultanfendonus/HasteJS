@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/user",
+      "controller": "user.find",
+      "config": {
+        "middleware": ["isLoggedIn"]
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/user/count",
+      "controller": "user.count",
+      "config": {
+        "middleware": ["isLoggedIn"]
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/user/:id",
+      "controller": "user.findOne",
+      "config": {
+        "middleware": ["isLoggedIn"]
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/user/get/me",
+      "controller": "user.findMe",
+      "config": {
+        "middleware": ["isLoggedIn"]
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/user/register",
+      "controller": "user.create",
+      "config": {
+        "middleware": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/user/login",
+      "controller": "user.login",
+      "config": {
+        "middleware": []
+      }
+    }
+  ]
+}
