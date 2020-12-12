@@ -1,6 +1,6 @@
 {
   "name": "hastejs-cli",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "An automated nodejs framework.",
   "main": "app/index.js",
   "type": "module",
@@ -11,6 +11,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "bin": {
+    "haste": "./bin/index.js",
     "create-module": "./haste/module/module.js",
     "create-middleware": "./haste/middleware/script.js"
   },
