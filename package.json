@@ -1,6 +1,6 @@
 {
   "name": "hastejs-cli",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "An automated nodejs framework.",
   "repository": {
     "type": "git",
@@ -19,8 +19,8 @@
     "create-module": "./haste/module/module.js",
     "create-middleware": "./haste/middleware/script.js"
   },
-  "author": "sunny sultan",
-  "license": "ISC",
+  "author": "SULTAN MAHAMUD",
+  "license": "MIT",
   "dependencies": {
     "fs-extra": "^9.0.1",
     "yargs": "^16.2.0",
