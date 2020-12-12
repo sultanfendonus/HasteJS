@@ -30,3 +30,9 @@ For more about sequelize model visit here: https://sequelize.org/master/manual/m
 
 **create a new middleware** \
 `create-middleware middlewareName`
+
+\
+\
+**License & copyright**\
+© MD SULTAN MAHAMUD, Software Engineer\
+Licensed under the [MIT License](LICENSE).
