@@ -1,20 +1,25 @@
 {
-  "name": "melirfan",
-  "version": "1.0.0",
+  "name": "hastejs-cli",
+  "version": "0.0.3",
   "description": "An automated nodejs framework.",
   "main": "app/index.js",
   "type": "module",
   "scripts": {
     "develop": "nodemon app/index.js",
     "sequelize": "sequelize",
-    "create:module": "node haste/module/module.js",
     "db:sync": "node database/sync.js",
-    "create:middleware": "node haste/middleware/script.js",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "haste": "./bin/index.js",
+    "create-module": "./haste/module/module.js",
+    "create-middleware": "./haste/middleware/script.js"
   },
   "author": "sunny sultan",
   "license": "ISC",
   "dependencies": {
+    "fs-extra": "^9.0.1",
+    "yargs": "^16.2.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "1.19.0",
     "chalk": "^4.1.0",

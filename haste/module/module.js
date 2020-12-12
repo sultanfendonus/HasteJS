@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import fs from 'fs';
 import shell from 'shelljs'
 import clear from 'clear'
