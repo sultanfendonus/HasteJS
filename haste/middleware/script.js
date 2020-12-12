@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import {frameworkName} from "../constant/general.js";
 import {capitalizeFirstLetter, copyFile, isDuplicate} from "../utils/utils.js";
 import shell from "shelljs";
