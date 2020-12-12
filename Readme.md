@@ -19,14 +19,14 @@ HasteJs only requires Node.js. The current recommended version to run Haste is N
 
 
 **create a new module** \
-`create:module moduleName`\
+`create-module moduleName`
 
 _It will generate a new folder in app directory with routes, controllers and model._
 
 **Update the model**\
-Haste uses `sequelize` for managing database operations. now you need to 
+HasteJs uses `sequelize` for managing database operations. now you need to 
 update your `model.js` file to structure your table.
 For more about sequelize model visit here: https://sequelize.org/master/manual/model-basics.html
 
 **create a new middleware** \
-`create:middleware middlewareName`
+`create-middleware middlewareName`
