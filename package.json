@@ -2,6 +2,10 @@
   "name": "hastejs-cli",
   "version": "0.0.5",
   "description": "An automated nodejs framework.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sultanfendonus/HasteJS"
+  },
   "main": "app/index.js",
   "type": "module",
   "scripts": {
