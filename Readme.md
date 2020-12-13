@@ -4,7 +4,9 @@ HasteJS is a NodeJs framework, built on top of ExpressJS, released as free and o
 
 `Note: HasteJS still not production-ready.`
 
-**Details Docs:** http://hastejs.com 
+**Details Docs:** http://hastejs.com
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/96254405-9395-4994-9a7f-613ccfdfa563/deploy-status)](https://app.netlify.com/sites/hastejs/deploys)
 
 **Node.js**\
 HasteJs only requires Node.js. The current recommended version to run Haste is Node v14.

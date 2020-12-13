@@ -1,1 +1,7 @@
 * [Home](/)
+* [Module](module.md "HasteJs Module")
+    * [Create a new module](module.md?id=create-a-new-module)
+    * [Routes](module.md?id=routes)
+    * [Controllers](module.md?id=controller)
+    * [Model](module.md?id=model)
+* [MiddleWare](middleware.md)
