@@ -1,13 +1,14 @@
 # Module
 
 ### What is Module in HasteJs?
-In **HasteJs**, A module is a part of your entire project. 
+In **HasteJs**, Modules are some smaller part of your entire project. 
 You may want to divide your entire project into some modules so that
 you can easily use these modules for your other hasteJs project easily.
 
 
 ### Create a new module
-It is very easy to create a new module in your haste project.
+It is very easy to create a new module in your hasteJs project.
+Just run below comand on your project root.
 
 `create-module moduleName`
 
@@ -132,5 +133,15 @@ export const Model = sequelize.define('Category', {
     // Other model options go here
 });
 ```
+### Default Module
+When you create a HasteJs project by [create-haste-app](https://www.npmjs.com/package/create-haste-app), A default User module will automatically generate for you in your app directory, So that you can focus on your main modules to develop your app in haste mode.
+This default user module provides the following API
+
+    - Login user
+    - Register user
+    - Count all users
+    - Find Me
+    - Find all users
+    - Find Specific user.
 
 
