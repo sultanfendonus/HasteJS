@@ -22,8 +22,6 @@
   "author": "SULTAN MAHAMUD",
   "license": "MIT",
   "dependencies": {
-    "fs-extra": "^9.0.1",
-    "yargs": "^16.2.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "1.19.0",
     "chalk": "^4.1.0",
@@ -31,11 +29,13 @@
     "cors": "2.8.5",
     "express": "^4.17.1",
     "figlet": "^1.5.0",
+    "fs-extra": "^9.0.1",
     "jsonwebtoken": "^8.5.1",
     "nodemon": "^2.0.6",
     "sequelize": "^6.3.5",
     "shelljs": "^0.8.4",
-    "sqlite3": "^5.0.0"
+    "sqlite3": "^5.0.0",
+    "yargs": "^16.2.0"
   },
   "devDependencies": {
     "cross-env": "^7.0.2",
