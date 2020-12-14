@@ -22,6 +22,7 @@
   "author": "SULTAN MAHAMUD",
   "license": "MIT",
   "dependencies": {
+    "hastejs-cli": "^0.0.6",
     "bcryptjs": "^2.4.3",
     "body-parser": "1.19.0",
     "chalk": "^4.1.0",
