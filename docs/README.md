@@ -7,13 +7,9 @@ HasteJS is a NodeJs framework, built on top of ExpressJS, released as free and o
 **Node.js**\
 HasteJs only requires Node.js. The current recommended version to run Haste is Node v14.
 
-**Installation**\
-`npm install -g create-haste-app hastejs-cli`
-
-**Create A new HasteJs app**\
-`create-haste-app my-app`\
+**Installation and run in development mode**\
+`npx create-haste-app my-app`\
 `cd my-app`\
-`npm install`\
 `npm run develop`
 
 Now create a new [module](module.md). [Click here](module.md)

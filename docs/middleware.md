@@ -35,7 +35,7 @@ middleware in middleware array.
 You can generate a new middleware for your need. Here is the shortcut way-
 
 **Create a new middleware** \
-`create-middleware middlewareName`
+`npx create-middleware middlewareName`
 
 _It will generate a new middleware file for you._
 

@@ -10,7 +10,7 @@ you can easily use these modules for your other hasteJs project easily.
 It is very easy to create a new module in your hasteJs project.
 Just run below comand on your project root.
 
-`create-module moduleName`
+`npx create-module moduleName`
 
 _It will generate a new folder in app directory with controllers,
 model and routes._
