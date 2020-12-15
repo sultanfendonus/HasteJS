@@ -51,12 +51,12 @@ copyAndReplaceControllerFile();
 
 const generateControllerMapper = ()=> {
     //ADD IMPORT IN CONTROLLER MAPPER
-    const importText = `import ${process.argv[2]} from "../../../app/${process.argv[2]}/controller.js";
+    const importText = `import ${process.argv[2]} from "./${process.argv[2]}/controller.js";
 //IMPORT`
     const keyValue = `${process.argv[2]}: ${process.argv[2]},
     //CONTROLLERS`
 
-    const mapperPath = `./${frameworkName}/module/controller/mapper.js`
+    const mapperPath = `./app/controllerMapper.js`
     if(!isDuplicate(mapperPath,importText)){
         shell.sed('-i', '//IMPORT', importText, mapperPath);
     }

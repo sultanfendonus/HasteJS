@@ -12,7 +12,9 @@
     "develop": "nodemon app/index.js",
     "sequelize": "sequelize",
     "db:sync": "node database/sync.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "create-module": "node haste/module/module.js",
+    "create-middleware": "node haste/middleware/script.js"
   },
   "bin": {
     "haste": "./bin/index.js",
