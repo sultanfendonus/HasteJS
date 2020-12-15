@@ -4,7 +4,7 @@ import {autoSyncDB} from '../config.js'
 export const sequelize = new Sequelize({
     dialect: 'sqlite',
     storage: 'db/database.sqlite',
-    logging: true
+    logging: false
 });
 
 export const syncAll = async ()=> {
