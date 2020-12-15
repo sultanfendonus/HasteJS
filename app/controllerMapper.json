@@ -1,0 +1,10 @@
+{
+  "import": [
+    "import user from './user/controller.js';",
+    "import test3 from './test3/controller.js';"
+  ],
+  "mapper": {
+    "user": "user",
+    "test3": "test3"
+  }
+}
