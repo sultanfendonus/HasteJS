@@ -1,0 +1,8 @@
+{
+    "import": [
+        "import isLoggedIn from './isLoggedIn.js';"
+    ],
+    "mapper": {
+        "isLoggedIn": "isLoggedIn"
+    }
+}

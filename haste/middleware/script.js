@@ -3,6 +3,7 @@
 import {frameworkName} from "../constant/general.js";
 import {capitalizeFirstLetter, copyFile, isDuplicate} from "../utils/utils.js";
 import shell from "shelljs";
+import fs from "fs";
 
 
 const copyAndReplaceMiddlewareFile = ()=> {
@@ -16,19 +17,32 @@ const copyAndReplaceMiddlewareFile = ()=> {
 }
 
 const generateMiddlewareMapper = ()=> {
-    //ADD IMPORT IN MIDDLEWARE MAPPER
-    const importText = `import ${process.argv[2]} from "./${process.argv[2]}.js";
-//IMPORT`
-    const keyValue = `${process.argv[2]}: ${process.argv[2]},
-    //MIDDLEWARES`
+    const file_content = fs.readFileSync('./middleware/middlewareMapper.json');
 
-    const mapperPath = `./middleware/middlewareMapper.js`
-    if(!isDuplicate(mapperPath,importText)){
-        shell.sed('-i', '//IMPORT', importText, mapperPath);
-    }
-    if(!isDuplicate(mapperPath, keyValue)){
-        shell.sed('-i', '//MIDDLEWARES', keyValue, mapperPath);
-    }
+    let middlewareMapper = JSON.parse(file_content.toString());
+
+    middlewareMapper.import.push(`import ${process.argv[2]} from `+"'"+`./${process.argv[2]}.js` +"';")
+    middlewareMapper.mapper[process.argv[2]] = process.argv[2]
+
+    let middlewareMapperText = "";
+
+    middlewareMapper.import.forEach((item)=> {
+        middlewareMapperText = middlewareMapperText.concat(`${item} \n`)
+    })
+    middlewareMapperText = middlewareMapperText.concat(`\n`)
+
+    let mapperObject = ""
+    Object.keys(middlewareMapper.mapper).forEach((item)=> {
+        mapperObject = mapperObject.concat(`    ${item}: ${item}, \n`)
+    })
+
+    let mapperObjectText = "export const MIDDLEWARE_MAPPER = {\n" +
+        mapperObject +
+        "}"
+    middlewareMapperText = middlewareMapperText.concat(mapperObjectText)
+
+    fs.writeFileSync('./middleware/middlewareMapper.js', middlewareMapperText)
+    fs.writeFileSync('./middleware/middlewareMapper.json', JSON.stringify(middlewareMapper, null, 4))
 }
 
 copyAndReplaceMiddlewareFile();
