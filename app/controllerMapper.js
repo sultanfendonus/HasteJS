@@ -1,8 +1,9 @@
-import user from "./user/controller.js";
-import test3 from "./test3/controller.js";
-//IMPORT
+import user from './user/controller.js'; 
+import category from './category/controller.js'; 
+import test2 from './test2/controller.js'; 
 
 export const CONTROLLER_MAPPER = {
-    user: user,
-    test3: test3
+    user: user, 
+    category: category, 
+    test2: test2, 
 }
