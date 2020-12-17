@@ -70,7 +70,7 @@ describe('User API', ()=> {
                     })
             })
 
-            // it("It should able to be login", (done)=>{
+            // it("It should able to be login",  (done)=>{
             //     chai.request(server)
             //         .post('/user/login')
             //         .send({
@@ -82,8 +82,6 @@ describe('User API', ()=> {
             //             response.should.have.status(200)
             //             done();
             //         })
-            //
-            //
             // })
         })
     })

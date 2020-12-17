@@ -1,6 +1,6 @@
 {
   "name": "hastejs-cli",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "An automated nodejs framework.",
   "repository": {
     "type": "git",
@@ -46,9 +46,7 @@
     "yargs": "^16.2.0"
   },
   "devDependencies": {
-    "babel-register": "^6.26.0",
     "cross-env": "^7.0.2",
-    "esm": "^3.2.25",
     "sequelize-cli": "^6.2.0"
   }
 }
