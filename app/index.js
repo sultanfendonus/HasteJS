@@ -66,6 +66,6 @@ app.use((err, req, res, next) => {
 });
 
 
-app.listen(port, () => {
+export const server = app.listen(port, () => {
     console.log(`Haste app listening at http://localhost:${port}`)
 })
