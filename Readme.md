@@ -1,6 +1,7 @@
 # **[HasteJS - A nodejs framework.](http://hastejs.com/)**
 [![NPM](https://img.shields.io/npm/v/hastejs-cli.svg?style=flat-square)](https://www.npmjs.com/package/hastejs-cli)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](https://github.com/sultanfendonus/HasteJS/blob/main/LICENSE)
+![HasteJs CI](https://github.com/sultanfendonus/HasteJS/workflows/HasteJs%20CI/badge.svg)
 
 HasteJS is a NodeJs framework, built on top of ExpressJS, released as free and open-source software under the MIT Licence. It is particularly designed to develop a quick Restful API in record time.
 
