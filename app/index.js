@@ -1,18 +1,30 @@
 import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
+import path from 'path'
 import {combinedRoutes} from "../haste/utils/utils.js";
 import {CONTROLLER_MAPPER} from "./controllerMapper.js";
 import {init} from '../database/index.js'
 import {MIDDLEWARE_MAPPER} from "../middleware/middlewareMapper.js";
 
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+
 
 const app = express()
-const port = 9999
+
+
+app.set("view engine", "ejs");
+const __dirname = dirname(fileURLToPath(import.meta.url));
+app.set("views", path.join(__dirname,"../views"));
+
+
+const port = 4999
 
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use( express.static( "public" ) );
 
 //database init
 init()
@@ -35,9 +47,16 @@ routes.map((item)=> {
         CONTROLLER_MAPPER[controller][method])
 })
 
-app.get('/', (req, res) => {
-    res.send(routes)
-})
+// app.get('/', (req, res) => {
+//     res.send(routes)
+// })
+
+app.get("/", (req, res) => {
+    res.render("homepage",{
+        pageTitle: "HasteJs - Homepage",
+        version: process.env.npm_package_version
+    });
+});
 
 app.use((err, req, res, next) => {
     if (!err.statusCode) {
@@ -48,5 +67,5 @@ app.use((err, req, res, next) => {
 
 
 app.listen(port, () => {
-    console.log(`Example app listening at http://localhost:${port}`)
+    console.log(`Haste app listening at http://localhost:${port}`)
 })
