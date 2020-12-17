@@ -1,7 +1,5 @@
-import isLoggedIn from "./isLoggedIn.js";
-//IMPORT
+import isLoggedIn from './isLoggedIn.js'; 
 
 export const MIDDLEWARE_MAPPER = {
-    isLoggedIn: isLoggedIn,
-    //MIDDLEWARES
+    isLoggedIn: isLoggedIn, 
 }

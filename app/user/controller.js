@@ -94,7 +94,6 @@ const controller = {
             const user = await User.findOne({
                 where: { email: req.body.email }
             });
-
             if (user) {
                 bcrypt.compare(req.body.password, user.password, async function (err, result) {
                     // res === true

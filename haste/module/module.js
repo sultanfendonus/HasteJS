@@ -50,19 +50,32 @@ copyAndReplaceControllerFile();
 
 
 const generateControllerMapper = ()=> {
-    //ADD IMPORT IN CONTROLLER MAPPER
-    const importText = `import ${process.argv[2]} from "../../../app/${process.argv[2]}/controller.js";
-//IMPORT`
-    const keyValue = `${process.argv[2]}: ${process.argv[2]},
-    //CONTROLLERS`
+    const file_content = fs.readFileSync('./app/controllerMapper.json');
 
-    const mapperPath = `./${frameworkName}/module/controller/mapper.js`
-    if(!isDuplicate(mapperPath,importText)){
-        shell.sed('-i', '//IMPORT', importText, mapperPath);
-    }
-    if(!isDuplicate(mapperPath, keyValue)){
-        shell.sed('-i', '//CONTROLLERS', keyValue, mapperPath);
-    }
+    let controllerMapper = JSON.parse(file_content.toString());
+
+    controllerMapper.import.push(`import ${process.argv[2]} from `+"'"+`./${process.argv[2]}/controller.js` +"';")
+    controllerMapper.mapper[process.argv[2]] = process.argv[2]
+
+    let controllerMapperText = "";
+
+    controllerMapper.import.forEach((item)=> {
+        controllerMapperText = controllerMapperText.concat(`${item} \n`)
+    })
+    controllerMapperText = controllerMapperText.concat(`\n`)
+
+    let mapperObject = ""
+    Object.keys(controllerMapper.mapper).forEach((item)=> {
+        mapperObject = mapperObject.concat(`    ${item}: ${item}, \n`)
+    })
+
+    let mapperObjectText = "export const CONTROLLER_MAPPER = {\n" +
+        mapperObject +
+        "}"
+    controllerMapperText = controllerMapperText.concat(mapperObjectText)
+
+    fs.writeFileSync('./app/controllerMapper.js', controllerMapperText)
+    fs.writeFileSync('./app/controllerMapper.json', JSON.stringify(controllerMapper, null, 4))
 }
 
 generateControllerMapper();

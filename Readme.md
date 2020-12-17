@@ -13,29 +13,217 @@ HasteJS is a NodeJs framework, built on top of ExpressJS, released as free and o
 **Node.js**\
 HasteJs only requires Node.js. The current recommended version to run Haste is Node v14.
 
-**Installation**\
-`npm install -g create-haste-app hastejs-cli`
-
-**Create A new HasteJs app**\
-`create-haste-app my-app`\
+**Installation and run in development mode**\
+`npx create-haste-app my-app`\
 `cd my-app`\
-`npm install`\
 `npm run develop`
 
 
+# Module
 
-**create a new module** \
-`create-module moduleName`
+### What is Module in HasteJs?
+In **HasteJs**, Modules are some smaller part of your entire project.
+You may want to divide your entire project into some modules so that
+you can easily use these modules for your other hasteJs project easily.
 
-_It will generate a new folder in app directory with routes, controllers and model._
 
-**Update the model**\
-HasteJs uses `sequelize` for managing database operations. now you need to 
-update your `model.js` file to structure your table.
+### Create a new module
+It is very easy to create a new module in your hasteJs project.
+Just run below comand on your project root.
+
+`npx create-module moduleName`
+
+_It will generate a new folder in app directory with controllers,
+model and routes._
+
+```text
+.
+└── app
+    └── moduleName
+        ├── controller.js
+        └── model.js
+        └── routes.json
+```
+### Routes
+Routes refer to how Rest API's endpoints respond to client requests.
+When you create a new module, haste by default create some REST convention endpoint for you.
+Here, You can add new endpoints or update old endpoints as your need.
+
+```json
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/category",
+      "controller": "category.find",
+      "config": {
+        "middleware": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/category/count",
+      "controller": "category.count",
+      "config": {
+        "middleware": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/category/:id",
+      "controller": "category.findOne",
+      "config": {
+        "middleware": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/category",
+      "controller": "category.create",
+      "config": {
+        "middleware": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/category/:id",
+      "controller": "category.update",
+      "config": {
+        "middleware": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/category/:id",
+      "controller": "category.delete",
+      "config": {
+        "middleware": []
+      }
+    }
+  ]
+}
+```
+### Controller
+Every route passes the request to the defined controller.
+Controllers hold the business logic of your module.
+Every route must define a controller. Controllers can communicate with the model and return data to the client or Error handlers.
+
+```javascript
+import {Model as Category} from './model.js'
+
+const controller = {
+    async count(req, res, next){
+        try {
+            const response = await Category.count({});
+            res.json({total: response});
+        } catch (err) {
+            next(err);
+        }
+    },
+}
+export default controller;
+```
+The above code is responsible for the return count of the Category.
+
+If you need to add a new function to your controller, you must add it to your routes.json file with the proper structure.
+
+### Model
+HasteJs uses `sequelize` for managing database operations. For
+updating your model you need to update your `model.js` file to structure your table.
 For more about sequelize model visit here: https://sequelize.org/master/manual/model-basics.html
 
-**create a new middleware** \
-`create-middleware middlewareName`
+Example model:
+```javascript
+import {sequelize} from "../../database/index.js";
+import DataTypes from 'sequelize';
+
+export const Model = sequelize.define('Category', {
+    // Model attributes are defined here
+    // This are example attributes. please change as you want.
+    // visit https://sequelize.org/master/manual/model-basics.html for details.
+
+    title: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    description: {
+        type: DataTypes.STRING
+        // allowNull defaults to true
+    }
+}, {
+    // Other model options go here
+});
+```
+### Default Module
+When you create a HasteJs project by [create-haste-app](https://www.npmjs.com/package/create-haste-app), A default User module will automatically generate for you in your app directory, So that you can focus on your main modules to develop your app in haste mode.
+This default user module provides the following API
+
+    - Login user
+    - Register user
+    - Count all users
+    - Find Me
+    - Find all users
+    - Find Specific user.
+
+
+# Middleware
+
+### What is middleware?
+Middleware is a piece of code or functions that have access to the
+request object (req), the response object (res), and the next middleware
+function in the application’s request-response cycle. The next middleware
+function is commonly denoted by a variable named next.
+More about middleware visit [ExpressJS Middleware](https://expressjs.com/en/guide/using-middleware.html)
+
+In a general sense, you will need a middleware when
+you want to verify the request and do some stuff with the request
+before the controller function execute.
+You can define one or multiple middlewares in every route.
+
+`create-haste-app` automatically generates "isLoggedIn"
+middleware for you in `app -> middleware` folder.
+This middleware verifies the JW token and passes the request
+to the controller or error handlers. You can use this middleware
+on any of your routes to secure the route.
+
+Here user count route is secured by `isLoggedIn` middleware. You can add multiple
+middleware in middleware array.
+
+```json
+{
+      "method": "GET",
+      "path": "/user/count",
+      "controller": "user.count",
+      "config": {
+        "middleware": ["isLoggedIn"]
+      }
+    }
+```
+
+You can generate a new middleware for your need. Here is the shortcut way-
+
+**Create a new middleware** \
+`npx create-middleware middlewareName`
+
+_It will generate a new middleware file for you._
+
+```text
+.
+└── middleware
+    ├── isLoggedIn.js
+    └── middlewareName.js
+```
+```javascript
+const middlewareName = (req,res,next) => {
+    try{
+        next();
+    }catch (e) {
+        next(error);
+    }
+}
+
+export default middlewareName;
+```
 
 \
 \

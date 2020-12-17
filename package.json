@@ -1,6 +1,6 @@
 {
   "name": "hastejs-cli",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "An automated nodejs framework.",
   "repository": {
     "type": "git",
@@ -10,9 +10,11 @@
   "type": "module",
   "scripts": {
     "develop": "nodemon app/index.js",
+    "test": "mocha ./test",
     "sequelize": "sequelize",
     "db:sync": "node database/sync.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "create-module": "node haste/module/module.js",
+    "create-middleware": "node haste/middleware/script.js"
   },
   "bin": {
     "haste": "./bin/index.js",
@@ -22,16 +24,21 @@
   "author": "SULTAN MAHAMUD",
   "license": "MIT",
   "dependencies": {
-    "hastejs-cli": "^0.0.6",
     "bcryptjs": "^2.4.3",
     "body-parser": "1.19.0",
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
     "chalk": "^4.1.0",
     "clear": "^0.1.0",
     "cors": "2.8.5",
+    "ejs": "^3.1.5",
     "express": "^4.17.1",
+    "faker": "^5.1.0",
     "figlet": "^1.5.0",
     "fs-extra": "^9.0.1",
+    "hastejs-cli": "^0.0.6",
     "jsonwebtoken": "^8.5.1",
+    "mocha": "^8.2.1",
     "nodemon": "^2.0.6",
     "sequelize": "^6.3.5",
     "shelljs": "^0.8.4",
