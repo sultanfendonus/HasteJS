@@ -1,7 +1,7 @@
 {
   "name": "hastejs-cli",
   "version": "0.0.7",
-  "description": "An automated nodejs framework.",
+  "description": "A nodejs Framework for develop API in record time.",
   "repository": {
     "type": "git",
     "url": "https://github.com/sultanfendonus/HasteJS"
