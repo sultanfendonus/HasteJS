@@ -7,7 +7,6 @@ dotenv.config()
 export let sequelize;
 
 if(dbConfig.settings.client === 'sqlite'){
-    console.log(dbConfig)
     sequelize= new Sequelize({
         dialect: 'sqlite',
         storage: 'db/database.sqlite',
@@ -20,11 +19,17 @@ if(dbConfig.settings.client === 'sqlite'){
         }
     });
 }else {
-    console.log(dbConfig)
     const {client, host, port, database, username, password} = dbConfig.settings;
     sequelize = new Sequelize(database, username, password, {
-        host: `${host}:${port}`,
-        dialect: client
+        host: `${host}`,
+        dialect: client,
+        logging: (msg)=> {
+            if(!process.env.DB_LOGS || process.env.DB_LOGS === 'false'){
+                return false;
+            }else {
+                return console.log(msg)
+            }
+        }
     });
 }
 
