@@ -74,7 +74,7 @@ const controller = {
                             email: response.email,
                             user_id: response.id
                         },
-                        jwtSecretKey
+                        process.env.JWT_SECRET || jwtSecretKey
                     );
 
                     res.status(201).json({
@@ -103,7 +103,7 @@ const controller = {
                                 email: user.email,
                                 user_id: user.id
                             },
-                            jwtSecretKey
+                            process.env.JWT_SECRET || jwtSecretKey
                         );
 
                         const userData = await User.scope('withoutPassword').findOne({
