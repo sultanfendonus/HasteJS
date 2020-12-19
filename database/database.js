@@ -8,6 +8,6 @@ export const dbConfig = {
         port: process.env.DB_PORT || '5432',
         database: process.env.DB_NAME || 'haste',
         username: process.env.DB_USER || 'haste',
-        password: process.env.DB_PASSWORD || '123456',
+        password: process.env.DB_PASSWORD || '',
     }
 }
