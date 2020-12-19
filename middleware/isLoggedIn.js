@@ -10,7 +10,7 @@ const isLoggedIn = (req,res,next) => {
     let token = req.get('Authorization').split(" ")[1];
     let decodedToken;
     try{
-        decodedToken = jwt.verify(token, jwtSecretKey);
+        decodedToken = jwt.verify(token, process.env.JWT_SECRET || jwtSecretKey);
         if(!decodedToken){
             const error = new Error("Unauthorized User!")
             error.statusCode = 403;
