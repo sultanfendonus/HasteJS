@@ -14,11 +14,13 @@
     "sequelize": "sequelize",
     "db:sync": "node database/sync.js",
     "create-module": "node haste/module/module.js",
+    "remove-module": "node haste/module/removeModule.js",
     "create-middleware": "node haste/middleware/script.js"
   },
   "bin": {
     "haste": "./bin/index.js",
     "create-module": "./haste/module/module.js",
+    "remove-module": "./haste/module/removeModule.js",
     "create-middleware": "./haste/middleware/script.js"
   },
   "author": "SULTAN MAHAMUD",
