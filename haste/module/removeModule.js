@@ -6,8 +6,6 @@ import clear from 'clear'
 import chalk from "chalk"
 import figlet from 'figlet'
 import {frameworkName} from "../constant/general.js";
-import {copyFile, isDuplicate} from "../utils/utils.js";
-import {capitalizeFirstLetter} from "../utils/utils.js";
 
 //Little style
 clear();
@@ -16,6 +14,12 @@ console.log(
         figlet.textSync(frameworkName, { horizontalLayout: 'full' })
     )
 );
+
+// User module can not be deleted
+if(process.argv[2] === 'user'){
+    console.log(chalk.red('User Module can not be removed!'));
+    process.exit(1);
+}
 
 //Check a Module Exists or Not
 let dir = `./app/${process.argv[2]}`;
@@ -61,7 +65,7 @@ const removeControllerMapper = ()=> {
 
     fs.writeFileSync('./app/controllerMapper.js', controllerMapperText)
     fs.writeFileSync('./app/controllerMapper.json', JSON.stringify(controllerMapper, null, 4))
-    console.log("Module Removed Successfully!")
+    console.log(chalk.green("Module Removed Successfully!"));
 }
 
 removeControllerMapper();
