@@ -2,6 +2,7 @@
 * [Module](module.md "HasteJs Module")
     * [Introduction](module.md?id=module)
     * [Create a new module](module.md?id=create-a-new-module)
+    * [Remove an existing module](module.md?id=remove-an-existing-module)
     * [Routes](module.md?id=routes)
     * [Controllers](module.md?id=controller)
     * [Model](module.md?id=model)

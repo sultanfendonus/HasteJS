@@ -23,6 +23,15 @@ model and routes._
         └── model.js
         └── routes.json
 ```
+### Remove an existing module
+If you want to remove a module, just run below command on your project
+root -
+
+`npx remove-module moduleName`
+
+Note: Don't delete a folder or module manually from app directory.
+That may cause unnecessary exception on your code. 
+
 ### Routes
 Routes refer to how Rest API's endpoints respond to client requests.
 When you create a new module, haste by default create some REST convention endpoint for you.
