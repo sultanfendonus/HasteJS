@@ -43,7 +43,6 @@ const removeControllerMapper = ()=> {
         controllerMapper.import.splice(index, 1);
     }
 
-    // controllerMapper.mapper[process.argv[2]] = process.argv[2]
     delete controllerMapper.mapper[process.argv[2]]
 
     let controllerMapperText = "";
