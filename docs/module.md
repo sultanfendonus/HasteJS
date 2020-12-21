@@ -30,7 +30,7 @@ root -
 `npx remove-module moduleName`
 
 Note: Don't delete a folder or module manually from app directory.
-That may cause unnecessary exception on your code. 
+That may cause unnecessary error on your code. 
 
 ### Routes
 Routes refer to how Rest API's endpoints respond to client requests.
