@@ -14,12 +14,16 @@
     "sequelize": "sequelize",
     "db:sync": "node database/sync.js",
     "create-module": "node haste/module/module.js",
-    "create-middleware": "node haste/middleware/script.js"
+    "remove-module": "node haste/module/removeModule.js",
+    "create-middleware": "node haste/middleware/script.js",
+    "remove-middleware": "node haste/middleware/removeMiddleware.js"
   },
   "bin": {
     "haste": "./bin/index.js",
     "create-module": "./haste/module/module.js",
-    "create-middleware": "./haste/middleware/script.js"
+    "remove-module": "./haste/module/removeModule.js",
+    "create-middleware": "./haste/middleware/script.js",
+    "remove-middleware": "./haste/middleware/removeMiddleware.js"
   },
   "author": "SULTAN MAHAMUD",
   "license": "MIT",

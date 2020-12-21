@@ -34,7 +34,7 @@ middleware in middleware array.
 
 You can generate a new middleware for your need. Here is the shortcut way-
 
-**Create a new middleware** \
+### Create a new middleware
 `npx create-middleware middlewareName`
 
 _It will generate a new middleware file for you._
@@ -56,3 +56,12 @@ const middlewareName = (req,res,next) => {
 
 export default middlewareName;
 ```
+
+### Remove an existing middleware
+If you want to remove a middleware, just run below command on your project
+root -
+
+`npx remove-middleware middlewareName`
+
+Note: Don't delete middleware files manually from `middleware` directory.
+That may cause unnecessary error on your code. 
