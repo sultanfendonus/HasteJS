@@ -47,16 +47,26 @@ routes.map((item)=> {
         CONTROLLER_MAPPER[controller][method])
 })
 
-// app.get('/', (req, res) => {
-//     res.send(routes)
-// })
+let debugMode = process.env.DEBUG_MODE || true;
 
-app.get("/", (req, res) => {
-    res.render("homepage",{
-        pageTitle: "HasteJs - Homepage",
-        version: process.env.npm_package_version
+if(debugMode === true || debugMode === 'true'){
+    app.get("/", (req, res) => {
+        res.render("homepage",{
+            pageTitle: "HasteJs - Homepage",
+            version: process.env.npm_package_version
+        });
     });
-});
+
+    app.get("/api-docs", (req, res) => {
+        res.render("api-docs",{
+            pageTitle: "HasteJs - API Documentation",
+            version: process.env.npm_package_version,
+            api: routes,
+            port: process.env.PORT_NUMBER || port
+        });
+    });
+}
+
 
 app.use((err, req, res, next) => {
     if (!err.statusCode) {
