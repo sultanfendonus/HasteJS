@@ -13,6 +13,7 @@
     "test": "mocha ./test",
     "sequelize": "sequelize",
     "db:sync": "node database/sync.js",
+    "export": "node haste/export/script.js",
     "create-module": "node haste/module/module.js",
     "remove-module": "node haste/module/removeModule.js",
     "create-middleware": "node haste/middleware/script.js",

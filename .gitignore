@@ -5,3 +5,4 @@ package-lock.json
 yarn-error.log
 yarn-lock.json
 .env
+cha-export
