@@ -1,0 +1,53 @@
+<%- include('includes/header.ejs')%>
+</head>
+<body>
+
+<div class="container-lg">
+    <div class="row">
+        <div class="col">
+            <%- include('includes/navbar.ejs')%>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col" style="display: flex; justify-content: center; align-items: center; flex-direction: column">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Method</th>
+                    <th scope="col">Endpoint</th>
+                    <th scope="col">Url</th>
+                    <th scope="col">Middleware</th>
+                </tr>
+                </thead>
+                <tbody>
+                <% for(var i=0; i < api.length; i++) { %>
+                    <tr>
+                        <th scope="row"><%= i+1%></th>
+                        <% if(api[i].method === 'DELETE') { %>
+                            <td><button type="button" class="btn btn-danger"  style="padding: 5px"><%= api[i].method %></button></td>
+                        <% }else if(api[i].method === 'POST') {%>
+                            <td><button type="button" class="btn btn-primary"  style="padding: 5px"><%= api[i].method %></button></td>
+                        <% }else if(api[i].method === 'PUT') {%>
+                            <td><button type="button" class="btn btn-info"  style="padding: 5px"><%= api[i].method %></button></td>
+                        <% }else {%>
+                            <td><button type="button" class="btn btn-secondary" style="padding: 5px"><%= api[i].method %></button></td>
+                        <% } %>
+
+                        <td><%= api[i].path %></td>
+                        <td><a target="_blank" href="http://127.0.0.1:<%= port %><%= api[i].path %>">http://127.0.0.1:<%= port %><%= api[i].path %></a></td>
+                        <td><%= api[i].config.middleware %></td>
+                    </tr>
+                <% } %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+</body>
+</html>

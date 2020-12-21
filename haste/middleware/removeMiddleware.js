@@ -68,6 +68,7 @@ const removeMiddlewareMapper = ()=> {
 
     fs.writeFileSync('./middleware/middlewareMapper.js', middlewareMapperText)
     fs.writeFileSync('./middleware/middlewareMapper.json', JSON.stringify(middlewareMapper, null, 4))
+    console.log(chalk.green("Middleware Removed Successfully!"));
 }
 
 removeMiddlewareMapper();
