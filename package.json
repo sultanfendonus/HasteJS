@@ -9,6 +9,7 @@
   "main": "app/index.js",
   "type": "module",
   "scripts": {
+    "start": "node app/index.js",
     "develop": "nodemon app/index.js",
     "test": "mocha ./test",
     "sequelize": "sequelize",
