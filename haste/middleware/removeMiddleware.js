@@ -1,13 +1,11 @@
 #!/usr/bin/env node
 
 import {frameworkName} from "../constant/general.js";
-import {capitalizeFirstLetter, copyFile, isDuplicate} from "../utils/utils.js";
 import shell from "shelljs";
 import fs from "fs";
-import clear from "clear";
 import chalk from "chalk";
+import clear from "clear";
 import figlet from "figlet";
-
 
 //Little style
 clear();
@@ -17,23 +15,39 @@ console.log(
     )
 );
 
-const copyAndReplaceMiddlewareFile = ()=> {
-    //copy controller.js file
-    const sourceDir = `./${frameworkName}/middleware/middleware.js`;
-    const destinationDir = `./middleware/${process.argv[2]}.js`;
-    copyFile(sourceDir, destinationDir);
-
-    //replace with module name
-    shell.sed('-i', 'MIDDLEWARE_NAME', process.argv[2], destinationDir);
+// isLoggedIn Middleware can not be deleted
+if(process.argv[2] === 'isLoggedIn'){
+    console.log(chalk.red('isLoggedIn Middleware can not be removed!'));
+    process.exit(1);
 }
 
-const generateMiddlewareMapper = ()=> {
+//Check a Module Exists or Not
+let dir = `./middleware/${process.argv[2]}.js`;
+if(!fs.existsSync(dir)){
+    console.log(chalk.red('Middleware Not Found!'))
+    process.exit(1)
+}
+
+const removeMiddleWareFile = ()=> {
+    shell.rm('-rf', dir)
+}
+removeMiddleWareFile();
+
+
+const removeMiddlewareMapper = ()=> {
     const file_content = fs.readFileSync('./middleware/middlewareMapper.json');
 
     let middlewareMapper = JSON.parse(file_content.toString());
 
-    middlewareMapper.import.push(`import ${process.argv[2]} from `+"'"+`./${process.argv[2]}.js` +"';")
-    middlewareMapper.mapper[process.argv[2]] = process.argv[2]
+    // middlewareMapper.import.push(`import ${process.argv[2]} from `+"'"+`./${process.argv[2]}.js` +"';")
+    // middlewareMapper.mapper[process.argv[2]] = process.argv[2]
+
+    const index = middlewareMapper.import.indexOf(`import ${process.argv[2]} from `+"'"+`./${process.argv[2]}.js` +"';");
+    if (index > -1) {
+        middlewareMapper.import.splice(index, 1);
+    }
+
+    delete middlewareMapper.mapper[process.argv[2]]
 
     let middlewareMapperText = "";
 
@@ -54,7 +68,7 @@ const generateMiddlewareMapper = ()=> {
 
     fs.writeFileSync('./middleware/middlewareMapper.js', middlewareMapperText)
     fs.writeFileSync('./middleware/middlewareMapper.json', JSON.stringify(middlewareMapper, null, 4))
+    console.log(chalk.green("Middleware Removed Successfully!"));
 }
 
-copyAndReplaceMiddlewareFile();
-generateMiddlewareMapper();
+removeMiddlewareMapper();

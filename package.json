@@ -9,17 +9,24 @@
   "main": "app/index.js",
   "type": "module",
   "scripts": {
+    "start": "nodemon app/index.js",
     "develop": "nodemon app/index.js",
+    "deploy": "pm2 start app/index.js",
     "test": "mocha ./test",
     "sequelize": "sequelize",
     "db:sync": "node database/sync.js",
+    "export": "node haste/export/script.js",
     "create-module": "node haste/module/module.js",
-    "create-middleware": "node haste/middleware/script.js"
+    "remove-module": "node haste/module/removeModule.js",
+    "create-middleware": "node haste/middleware/script.js",
+    "remove-middleware": "node haste/middleware/removeMiddleware.js"
   },
   "bin": {
     "haste": "./bin/index.js",
     "create-module": "./haste/module/module.js",
-    "create-middleware": "./haste/middleware/script.js"
+    "remove-module": "./haste/module/removeModule.js",
+    "create-middleware": "./haste/middleware/script.js",
+    "remove-middleware": "./haste/middleware/removeMiddleware.js"
   },
   "author": "SULTAN MAHAMUD",
   "license": "MIT",
@@ -31,6 +38,7 @@
     "chalk": "^4.1.0",
     "clear": "^0.1.0",
     "cors": "2.8.5",
+    "dotenv": "^8.2.0",
     "ejs": "^3.1.5",
     "express": "^4.17.1",
     "faker": "^5.1.0",
@@ -38,8 +46,12 @@
     "fs-extra": "^9.0.1",
     "hastejs-cli": "^0.0.6",
     "jsonwebtoken": "^8.5.1",
+    "mariadb": "^2.5.2",
     "mocha": "^8.2.1",
+    "mysql2": "^2.2.5",
     "nodemon": "^2.0.6",
+    "pg": "^8.5.1",
+    "pg-hstore": "^2.3.3",
     "sequelize": "^6.3.5",
     "shelljs": "^0.8.4",
     "sqlite3": "^5.0.0",

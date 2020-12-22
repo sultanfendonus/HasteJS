@@ -53,22 +53,22 @@ describe('User API', ()=> {
             })
         })
 
-        describe("User Authentication, POST /user/register", ()=> {
-            it("should able to register a random generated user", (done)=>{
-                chai.request(server)
-                    .post("/user/register/")
-                    .send({
-                        first_name: faker.name.firstName(),
-                        last_name: faker.name.lastName(),
-                        email: faker.internet.email(),
-                        password: "123456"
-                    })
-                    .end((err, response)=> {
-                        response.should.have.status(201);
-                        response.body.should.have.property('token');
-                        done();
-                    })
-            })
+        // describe("User Authentication, POST /user/register", ()=> {
+        //     it("should able to register a random generated user", (done)=>{
+        //         chai.request(server)
+        //             .post("/user/register/")
+        //             .send({
+        //                 first_name: faker.name.firstName(),
+        //                 last_name: faker.name.lastName(),
+        //                 email: faker.internet.email(),
+        //                 password: "123456"
+        //             })
+        //             .end((err, response)=> {
+        //                 response.should.have.status(201);
+        //                 response.body.should.have.property('token');
+        //                 done();
+        //             })
+        //     })
 
             // it("It should able to be login",  (done)=>{
             //     chai.request(server)
@@ -83,6 +83,6 @@ describe('User API', ()=> {
             //             done();
             //         })
             // })
-        })
+        // })
     })
 })
