@@ -78,4 +78,6 @@ app.use((err, req, res, next) => {
 
 export const server = app.listen(process.env.PORT_NUMBER || port, () => {
     console.log(`Haste app listening at http://localhost:${process.env.PORT_NUMBER || port}`)
+    console.log(`API docs at http://localhost:${process.env.PORT_NUMBER || port}/api-docs`)
+    console.log(`Full HasteJs documentation at http://hastejs.com`)
 })

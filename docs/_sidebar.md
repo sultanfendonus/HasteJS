@@ -12,3 +12,4 @@
     * [Create a new middleware](middleware.md?id=create-a-new-middleware)
     * [Remove an existing middleware](middleware.md?id=remove-an-existing-middleware)
 * [Database](database.md)
+* [Deployment](deploy.md)
