@@ -6,6 +6,7 @@ import clear from 'clear'
 import chalk from "chalk"
 import figlet from 'figlet'
 import {frameworkName} from "../constant/general.js";
+import {capitalizeFirstLetter} from "../utils/utils.js";
 
 //Little style
 clear();
@@ -64,11 +65,46 @@ const removeControllerMapper = ()=> {
 
     fs.writeFileSync('./app/controllerMapper.js', controllerMapperText)
     fs.writeFileSync('./app/controllerMapper.json', JSON.stringify(controllerMapper, null, 4))
-    console.log(chalk.green("Module Removed Successfully!"));
 }
 
 removeControllerMapper();
 
+const removeModelMapper = ()=> {
+    const file_content = fs.readFileSync('./database/modelMapper.json');
+
+    let modelMapper = JSON.parse(file_content.toString());
+
+    const index = modelMapper.import.indexOf(`import {Model as ${capitalizeFirstLetter(process.argv[2])}} from `+"'"+`../app/${process.argv[2]}/model.js` +"';");
+    if (index > -1) {
+        modelMapper.import.splice(index, 1);
+    }
+
+    const objectIndex = modelMapper.export.indexOf(capitalizeFirstLetter(process.argv[2]));
+    if (objectIndex > -1) {
+        modelMapper.export.splice(objectIndex, 1);
+    }
+
+    let modelMapperText = "";
+
+    modelMapper.import.forEach((item)=> {
+        modelMapperText = modelMapperText.concat(`${item} \n`)
+    })
+    modelMapperText = modelMapperText.concat(`\n`)
+
+    let exportObject = ""
+    modelMapper.export.forEach((item)=> {
+        exportObject = exportObject.concat(`${item},`)
+    })
+
+    let exportObjectText = "export {" + exportObject +"}"
+    modelMapperText = modelMapperText.concat(exportObjectText)
+
+    fs.writeFileSync('./database/modelMapper.js', modelMapperText)
+    fs.writeFileSync('./database/modelMapper.json', JSON.stringify(modelMapper, null, 4))
+    console.log(chalk.green("Module Removed Successfully!"));
+}
+
+removeModelMapper();
 
 
 

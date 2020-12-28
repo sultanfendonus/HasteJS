@@ -21,6 +21,9 @@ console.log(
 let dir = `./app/${process.argv[2]}`;
 if(!fs.existsSync(dir)){
     fs.mkdirSync(dir);
+}else {
+    console.log(chalk.red('Module already exist! Please create a new module or update existing one from app directory.'))
+    process.exit(1)
 }
 
 const copyAndReplaceRouteFile = ()=> {
@@ -94,5 +97,33 @@ const copyAndReplaceModelFile = ()=> {
 copyAndReplaceModelFile();
 
 
+const generateModelMapper = ()=> {
+    const file_content = fs.readFileSync('./database/modelMapper.json');
 
+    let modelMapper = JSON.parse(file_content.toString());
+
+    modelMapper.import.push(`import {Model as ${capitalizeFirstLetter(process.argv[2])}} from `+"'"+`../app/${process.argv[2]}/model.js` +"';");
+    modelMapper.export.push(capitalizeFirstLetter(process.argv[2]));
+
+    let modelMapperText = "";
+
+    modelMapper.import.forEach((item)=> {
+        modelMapperText = modelMapperText.concat(`${item} \n`)
+    })
+    modelMapperText = modelMapperText.concat(`\n`)
+
+    let exportObject = ""
+    modelMapper.export.forEach((item)=> {
+        exportObject = exportObject.concat(`${item},`)
+    })
+
+    let exportObjectText = "export {" + exportObject +"}"
+    modelMapperText = modelMapperText.concat(exportObjectText)
+
+    fs.writeFileSync('./database/modelMapper.js', modelMapperText)
+    fs.writeFileSync('./database/modelMapper.json', JSON.stringify(modelMapper, null, 4))
+}
+
+
+generateModelMapper()
 
