@@ -105,6 +105,9 @@ const generateModelMapper = ()=> {
     modelMapper.import.push(`import {Model as ${capitalizeFirstLetter(process.argv[2])}} from `+"'"+`../app/${process.argv[2]}/model.js` +"';");
     modelMapper.export.push(capitalizeFirstLetter(process.argv[2]));
 
+    // move the relation import to the last position.
+    modelMapper.import.push(modelMapper.import.splice(modelMapper.import.indexOf(`import relation from './relation.js';`), 1)[0]);
+
     let modelMapperText = "";
 
     modelMapper.import.forEach((item)=> {

@@ -1,3 +1,3 @@
-import relation from "./relation.js"; 
+import relation from './relation.js'; 
 
 export {}

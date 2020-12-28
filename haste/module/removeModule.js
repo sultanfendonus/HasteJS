@@ -84,6 +84,9 @@ const removeModelMapper = ()=> {
         modelMapper.export.splice(objectIndex, 1);
     }
 
+    // move the relation import to the last position.
+    modelMapper.import.push(modelMapper.import.splice(modelMapper.import.indexOf(`import relation from './relation.js';`), 1)[0]);
+
     let modelMapperText = "";
 
     modelMapper.import.forEach((item)=> {
