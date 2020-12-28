@@ -1,6 +1,6 @@
 {
   "name": "hastejs-cli",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "A nodejs Framework for develop API in record time.",
   "repository": {
     "type": "git",
