@@ -1,4 +1,4 @@
-import {Model as UPPER} from './model.js'
+import {UPPER} from '../../database/modelMapper.js'
 
 const controller = {
     async find(req, res, next){
