@@ -16,14 +16,18 @@ console.log(
     )
 );
 
+// Get module name
+let moduleName = process.argv[2];
+moduleName = moduleName.toLowerCase();
+
 // User module can not be deleted
-if(process.argv[2] === 'user'){
+if(moduleName === 'user'){
     console.log(chalk.red('User Module can not be removed!'));
     process.exit(1);
 }
 
 //Check a Module Exists or Not
-let dir = `./app/${process.argv[2]}`;
+let dir = `./app/${moduleName}`;
 if(!fs.existsSync(dir)){
     console.log(chalk.red('Module Not Found!'))
     process.exit(1)
@@ -39,12 +43,12 @@ const removeControllerMapper = ()=> {
 
     let controllerMapper = JSON.parse(file_content.toString());
 
-    const index = controllerMapper.import.indexOf(`import ${process.argv[2]} from `+"'"+`./${process.argv[2]}/controller.js` +"';");
+    const index = controllerMapper.import.indexOf(`import ${moduleName} from `+"'"+`./${moduleName}/controller.js` +"';");
     if (index > -1) {
         controllerMapper.import.splice(index, 1);
     }
 
-    delete controllerMapper.mapper[process.argv[2]]
+    delete controllerMapper.mapper[moduleName]
 
     let controllerMapperText = "";
 
@@ -74,12 +78,12 @@ const removeModelMapper = ()=> {
 
     let modelMapper = JSON.parse(file_content.toString());
 
-    const index = modelMapper.import.indexOf(`import {Model as ${capitalizeFirstLetter(process.argv[2])}} from `+"'"+`../app/${process.argv[2]}/model.js` +"';");
+    const index = modelMapper.import.indexOf(`import {Model as ${capitalizeFirstLetter(moduleName)}} from `+"'"+`../app/${moduleName}/model.js` +"';");
     if (index > -1) {
         modelMapper.import.splice(index, 1);
     }
 
-    const objectIndex = modelMapper.export.indexOf(capitalizeFirstLetter(process.argv[2]));
+    const objectIndex = modelMapper.export.indexOf(capitalizeFirstLetter(moduleName));
     if (objectIndex > -1) {
         modelMapper.export.splice(objectIndex, 1);
     }
