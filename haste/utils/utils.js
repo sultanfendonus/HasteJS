@@ -1,9 +1,9 @@
 import fs from "fs";
 import shell from "shelljs";
 
-export const copyFile = (sourceDir, desDir)=> {
+export const copyFile = (sourceDir, desDir, FileName = 'Files')=> {
     fs.copyFileSync(sourceDir, desDir);
-    console.log('Config files generated successfully!');
+    console.log(`${FileName} generated successfully!`);
 }
 
 export const readContent = (file) => {
