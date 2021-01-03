@@ -17,14 +17,18 @@ console.log(
     )
 );
 
+// Get middleware name
+let middlewareName = process.argv[2];
+middlewareName = middlewareName.toLowerCase();
+
 const copyAndReplaceMiddlewareFile = ()=> {
     //copy controller.js file
     const sourceDir = `./${frameworkName}/middleware/middleware.js`;
-    const destinationDir = `./middleware/${process.argv[2]}.js`;
-    copyFile(sourceDir, destinationDir);
+    const destinationDir = `./middleware/${middlewareName}.js`;
+    copyFile(sourceDir, destinationDir, 'Middleware File');
 
     //replace with module name
-    shell.sed('-i', 'MIDDLEWARE_NAME', process.argv[2], destinationDir);
+    shell.sed('-i', 'MIDDLEWARE_NAME', middlewareName, destinationDir);
 }
 
 const generateMiddlewareMapper = ()=> {
@@ -32,8 +36,8 @@ const generateMiddlewareMapper = ()=> {
 
     let middlewareMapper = JSON.parse(file_content.toString());
 
-    middlewareMapper.import.push(`import ${process.argv[2]} from `+"'"+`./${process.argv[2]}.js` +"';")
-    middlewareMapper.mapper[process.argv[2]] = process.argv[2]
+    middlewareMapper.import.push(`import ${middlewareName} from `+"'"+`./${middlewareName}.js` +"';")
+    middlewareMapper.mapper[middlewareName] = middlewareName
 
     let middlewareMapperText = "";
 

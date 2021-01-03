@@ -6,6 +6,7 @@
     * [Routes](module.md?id=routes)
     * [Controllers](module.md?id=controller)
     * [Model](module.md?id=model)
+    * [Relation/Association](module.md?id=?id=relationassociation)
     * [Default Module](module.md?id=default-module)
 * [MiddleWare](middleware.md)
     * [What is middleware?](middleware.md?id=what-is-middleware)

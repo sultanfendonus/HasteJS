@@ -17,20 +17,27 @@ console.log(
     )
 );
 
+// Get module name
+let moduleName = process.argv[2];
+moduleName = moduleName.toLowerCase();
+
 //CREATE A NEW DIRECTORY DEFINE FROM ARGS.
-let dir = `./app/${process.argv[2]}`;
+let dir = `./app/${moduleName}`;
 if(!fs.existsSync(dir)){
     fs.mkdirSync(dir);
+}else {
+    console.log(chalk.red('Module already exist! Please create a new module or update existing one from app directory.'))
+    process.exit(1)
 }
 
 const copyAndReplaceRouteFile = ()=> {
     //copy routes.json file
     const sourceDir = `./${frameworkName}/module/routes.json`;
-    const destinationDir = `./app/${process.argv[2]}/routes.json`;
-    copyFile(sourceDir, destinationDir);
+    const destinationDir = `./app/${moduleName}/routes.json`;
+    copyFile(sourceDir, destinationDir, 'Routes File');
 
     //replace with module name
-    shell.sed('-i', 'REPLACE_ME', process.argv[2], destinationDir);
+    shell.sed('-i', 'REPLACE_ME', moduleName, destinationDir);
 }
 
 copyAndReplaceRouteFile();
@@ -38,12 +45,12 @@ copyAndReplaceRouteFile();
 const copyAndReplaceControllerFile = ()=> {
     //copy controller.js file
     const controllerSourceDir = `./${frameworkName}/module/controller/controller.js`;
-    const controllerDestinationDir = `./app/${process.argv[2]}/controller.js`;
-    copyFile(controllerSourceDir, controllerDestinationDir);
+    const controllerDestinationDir = `./app/${moduleName}/controller.js`;
+    copyFile(controllerSourceDir, controllerDestinationDir, 'Controllers File');
 
     //replace with module name
-    shell.sed('-i', 'REPLACE_ME', process.argv[2], controllerDestinationDir);
-    shell.sed('-i', 'UPPER', capitalizeFirstLetter(process.argv[2]), controllerDestinationDir);
+    shell.sed('-i', 'REPLACE_ME', moduleName, controllerDestinationDir);
+    shell.sed('-i', 'UPPER', capitalizeFirstLetter(moduleName), controllerDestinationDir);
 }
 
 copyAndReplaceControllerFile();
@@ -54,8 +61,8 @@ const generateControllerMapper = ()=> {
 
     let controllerMapper = JSON.parse(file_content.toString());
 
-    controllerMapper.import.push(`import ${process.argv[2]} from `+"'"+`./${process.argv[2]}/controller.js` +"';")
-    controllerMapper.mapper[process.argv[2]] = process.argv[2]
+    controllerMapper.import.push(`import ${moduleName} from `+"'"+`./${moduleName}/controller.js` +"';")
+    controllerMapper.mapper[moduleName] = moduleName
 
     let controllerMapperText = "";
 
@@ -84,15 +91,46 @@ generateControllerMapper();
 const copyAndReplaceModelFile = ()=> {
     //copy model.js file
     const modelSourceDir = `./${frameworkName}/module/database/model.js`;
-    const modelDestinationDir = `./app/${process.argv[2]}/model.js`;
-    copyFile(modelSourceDir, modelDestinationDir);
+    const modelDestinationDir = `./app/${moduleName}/model.js`;
+    copyFile(modelSourceDir, modelDestinationDir, 'Model Files');
 
     //replace model.js with module name
-    shell.sed('-i', 'REPLACE_ME', capitalizeFirstLetter(process.argv[2]), modelDestinationDir);
+    shell.sed('-i', 'REPLACE_ME', capitalizeFirstLetter(moduleName), modelDestinationDir);
 }
 
 copyAndReplaceModelFile();
 
 
+const generateModelMapper = ()=> {
+    const file_content = fs.readFileSync('./database/modelMapper.json');
 
+    let modelMapper = JSON.parse(file_content.toString());
+
+    modelMapper.import.push(`import {Model as ${capitalizeFirstLetter(moduleName)}} from `+"'"+`../app/${moduleName}/model.js` +"';");
+    modelMapper.export.push(capitalizeFirstLetter(moduleName));
+
+    // move the relation import to the last position.
+    modelMapper.import.push(modelMapper.import.splice(modelMapper.import.indexOf(`import relation from './relation.js';`), 1)[0]);
+
+    let modelMapperText = "";
+
+    modelMapper.import.forEach((item)=> {
+        modelMapperText = modelMapperText.concat(`${item} \n`)
+    })
+    modelMapperText = modelMapperText.concat(`\n`)
+
+    let exportObject = ""
+    modelMapper.export.forEach((item)=> {
+        exportObject = exportObject.concat(`${item},`)
+    })
+
+    let exportObjectText = "export {" + exportObject +"}"
+    modelMapperText = modelMapperText.concat(exportObjectText)
+
+    fs.writeFileSync('./database/modelMapper.js', modelMapperText)
+    fs.writeFileSync('./database/modelMapper.json', JSON.stringify(modelMapper, null, 4))
+}
+
+
+generateModelMapper()
 

@@ -1,9 +1,10 @@
 import fs from "fs";
 import shell from "shelljs";
+import chalk from "chalk";
 
-export const copyFile = (sourceDir, desDir)=> {
+export const copyFile = (sourceDir, desDir, FileName = 'Files')=> {
     fs.copyFileSync(sourceDir, desDir);
-    console.log('Config files generated successfully!');
+    console.log(chalk.green(`${FileName} generated successfully!`));
 }
 
 export const readContent = (file) => {

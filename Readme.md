@@ -118,7 +118,7 @@ Controllers hold the business logic of your module.
 Every route must define a controller. Controllers can communicate with the model and return data to the client or Error handlers.
 
 ```javascript
-import {Model as Category} from './model.js'
+import {Model as Category} from '../../database/modelMapper.js'
 
 const controller = {
     async count(req, res, next){
@@ -163,6 +163,26 @@ export const Model = sequelize.define('Category', {
     // Other model options go here
 });
 ```
+
+### Relation/Association
+You can define all your relation/association here ```database/relation.js``` file.
+
+Example
+
+```javascript
+import {Post, Category} from "./modelMapper.js";
+
+const relation = ()=> {
+    Post.belongsTo(Category, {foreignKey: 'category_id'})
+    Category.hasMany(Post, {
+        foreignKey: 'category_id',
+        sourceKey: 'id'
+    })
+}
+
+export default relation();
+```
+
 ### Default Module
 When you create a HasteJs project by [create-haste-app](https://www.npmjs.com/package/create-haste-app), A default User module will automatically generate for you in your app directory, So that you can focus on your main modules to develop your app in haste mode.
 This default user module provides the following API

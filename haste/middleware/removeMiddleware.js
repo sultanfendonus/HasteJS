@@ -15,14 +15,18 @@ console.log(
     )
 );
 
+// Get middleware name
+let middlewareName = process.argv[2];
+middlewareName = middlewareName.toLowerCase();
+
 // isLoggedIn Middleware can not be deleted
-if(process.argv[2] === 'isLoggedIn'){
+if(middlewareName === 'isLoggedIn'){
     console.log(chalk.red('isLoggedIn Middleware can not be removed!'));
     process.exit(1);
 }
 
 //Check a Module Exists or Not
-let dir = `./middleware/${process.argv[2]}.js`;
+let dir = `./middleware/${middlewareName}.js`;
 if(!fs.existsSync(dir)){
     console.log(chalk.red('Middleware Not Found!'))
     process.exit(1)
@@ -39,15 +43,15 @@ const removeMiddlewareMapper = ()=> {
 
     let middlewareMapper = JSON.parse(file_content.toString());
 
-    // middlewareMapper.import.push(`import ${process.argv[2]} from `+"'"+`./${process.argv[2]}.js` +"';")
-    // middlewareMapper.mapper[process.argv[2]] = process.argv[2]
+    // middlewareMapper.import.push(`import ${middlewareName} from `+"'"+`./${middlewareName}.js` +"';")
+    // middlewareMapper.mapper[middlewareName] = middlewareName
 
-    const index = middlewareMapper.import.indexOf(`import ${process.argv[2]} from `+"'"+`./${process.argv[2]}.js` +"';");
+    const index = middlewareMapper.import.indexOf(`import ${middlewareName} from `+"'"+`./${middlewareName}.js` +"';");
     if (index > -1) {
         middlewareMapper.import.splice(index, 1);
     }
 
-    delete middlewareMapper.mapper[process.argv[2]]
+    delete middlewareMapper.mapper[middlewareName]
 
     let middlewareMapperText = "";
 
