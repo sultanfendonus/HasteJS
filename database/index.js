@@ -1,4 +1,4 @@
-import {Sequelize} from 'sequelize';
+import Sequelize from 'sequelize';
 import {autoMigration} from '../config.js'
 import {dbConfig} from "./database.js";
 import dotenv from 'dotenv'
