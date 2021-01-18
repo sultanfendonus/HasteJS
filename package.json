@@ -13,6 +13,7 @@
     "develop": "nodemon app/index.js",
     "deploy": "pm2 start app/index.js",
     "test": "mocha ./test",
+    "admin": "node haste/admin/run-admin.js",
     "sequelize": "sequelize",
     "db:sync": "node database/sync.js",
     "export": "node haste/export/script.js",
