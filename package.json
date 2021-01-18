@@ -60,5 +60,15 @@
   "devDependencies": {
     "cross-env": "^7.0.2",
     "sequelize-cli": "^6.2.0"
-  }
+  },
+  "keywords": [
+    "hasteJs",
+    "framework",
+    "web",
+    "rest",
+    "api",
+    "restful",
+    "express",
+    "hastejs-cli"
+  ]
 }
